@@ -1,0 +1,186 @@
+<?php
+$images = get_field('images');
+$iframe = get_field('oembed');
+$video = get_field('video');
+$audio = get_field('audio');
+
+if( $images ) {
+    $images;
+} else {
+    $images = array();
+}
+
+if( $iframe ) {
+    $iframe;
+} else {
+    $iframe = array();
+}
+
+if( $video ) {
+    $video;
+} else {
+    $video = array();
+}
+
+if( $audio ) {
+    $audio;
+} else {
+    $audio = array();
+}
+?>
+<?php if( (count($images) > 2) || (count($images) >= 2 and $iframe) || (count($images) >= 2 and $audio) || (count($images) >= 2 and $video) || (count($images) >= 1 and $video and $iframe and $audio) ) : ?>
+<div class="media-array">
+    <?php if( $images ): ?>
+        <?php foreach( $images as $image ): ?>
+    <div class="media">
+        <a class="mylightbox" href="<?php echo $image['sizes']['large']; ?>" data-group="gallery-<?php the_ID(); ?>">
+            <img src="<?php echo $image['sizes']['thumbnail']; ?>" alt="<?php echo $image['alt']; ?>" />
+        </a>
+    </div>
+    <?php endforeach; ?>
+    <?php endif; ?>
+
+    <?php if( $iframe ): ?>
+    <div class="embed-container media">
+
+        <?php
+        $iframe_url = get_field('oembed', FALSE, FALSE);
+        $video_thumb_url = get_video_thumbnail_uri($iframe_url);
+        ?>
+
+        <a class="mylightbox" href="<?php echo $iframe_url ?>" data-group="gallery-<?php the_ID(); ?>">
+            <img class="iframeplay2" src="<?php bloginfo('template_url') ?>/images/play.png" alt="play">
+            <img src="<?php echo $video_thumb_url; ?>" alt="" width="134px" height="149px" />
+        </a>
+    </div>
+    <?php endif; ?>
+
+    <?php if( $video ): ?>
+    <div id="video-container" class="media">
+        <a class="mylightbox" href="<?php echo $video['url']; ?>" data-group="gallery-<?php the_ID(); ?>">
+            <img class="iframeplay2" src="<?php bloginfo('template_url') ?>/images/play.png" alt="play">
+            <video id="my_video" src="<?php echo $video['url']; ?>" width="134px" height="149px" >
+                <p>Your browser does not support the video tag.</p>
+            </video>
+        </a>
+    </div>
+    <?php endif; ?>
+
+    <?php if( $audio ): ?>
+        <div class="media">
+            <a class="mylightbox audio-light" href="<?php echo $audio['url']; ?>" data-group="gallery-<?php the_ID(); ?>">
+                <img class="iframeplay2" src="<?php bloginfo('template_url') ?>/images/play.png" alt="play">
+            </a>
+        </div>
+    <?php endif; ?>
+
+</div>
+<div class="more-media">
+    <span><?php
+        $countVideo = 0;
+        $countAudio = 0;
+        if($video){
+            $countVideo = count($video) - 16;
+        }
+        if($audio){
+            $countAudio = count($audio) - 14;
+        }
+            echo( "+" . (count($images) + count($iframe) + $countVideo + $countAudio - 1 ) );
+
+        ?></span>
+    <div class="media-bg"></div>
+</div>
+
+<?php elseif( (count($images) == 1 && $iframe) || (count($images) == 1 && $video) || ($video && $iframe) || (count($images) == 2) || (count($images) == 1 && $audio) || ($video && $audio) || ($iframe && $audio) ) : ?>
+
+    <?php if( $images ): ?>
+        <?php foreach( $images as $image ): ?>
+            <div class="media">
+                <a class="mylightbox" href="<?php echo $image['sizes']['large']; ?>" data-group="gallery-<?php the_ID(); ?>">
+                    <img src="<?php echo $image['sizes']['thumbnail']; ?>" alt="<?php echo $image['alt']; ?>" />
+                </a>
+            </div>
+        <?php endforeach; ?>
+    <?php endif; ?>
+
+    <?php if( $iframe ): ?>
+        <div class="embed-container media">
+
+            <?php
+            $iframe_url = get_field('oembed', FALSE, FALSE);
+            $video_thumb_url = get_video_thumbnail_uri($iframe_url);
+            ?>
+
+            <a class="mylightbox" href="<?php echo $iframe_url ?>" data-group="gallery-<?php the_ID(); ?>">
+                <img class="iframeplay2" src="<?php bloginfo('template_url') ?>/images/play.png" alt="play">
+                <img src="<?php echo $video_thumb_url; ?>" alt="" width="134px" height="149px" />
+            </a>
+        </div>
+    <?php endif; ?>
+
+    <?php if( $video ): ?>
+        <div id="video-container" class="media">
+            <a class="mylightbox" href="<?php echo $video['url']; ?>" data-group="gallery-<?php the_ID(); ?>">
+                <img class="iframeplay2" src="<?php bloginfo('template_url') ?>/images/play.png" alt="play">
+                <video id="my_video" src="<?php echo $video['url']; ?>" width="134px" height="149px" >
+                    <p>Your browser does not support the video tag.</p>
+                </video>
+            </a>
+        </div>
+    <?php endif; ?>
+
+    <?php if( $audio ): ?>
+        <div class="media">
+            <a class="mylightbox audio-light" href="<?php echo $audio['url']; ?>" data-group="gallery-<?php the_ID(); ?>">
+                <img class="iframeplay2" src="<?php bloginfo('template_url') ?>/images/play.png" alt="play">
+            </a>
+        </div>
+    <?php endif; ?>
+
+<?php elseif( count($images) == 1 || $iframe || $video || $audio ) :  ?>
+
+        <?php if( $images ): ?>
+            <?php foreach( $images as $image ): ?>
+                <div class="media">
+                    <a class="mylightbox" href="<?php echo $image['sizes']['large']; ?>" >
+                        <img src="<?php echo $image['sizes']['medium']; ?>" alt="<?php echo $image['alt']; ?>" />
+                    </a>
+                </div>
+            <?php endforeach; ?>
+        <?php endif; ?>
+
+        <?php if( $iframe ): ?>
+            <div class="media">
+
+                <?php
+                    $iframe_url = get_field('oembed', FALSE, FALSE);
+                    $video_thumb_url = get_video_thumbnail_uri($iframe_url);
+                ?>
+
+                <a class="mylightbox" href="<?php echo $iframe_url ?>" >
+                    <img class="iframeplay1" src="<?php bloginfo('template_url') ?>/images/play.png" alt="play">
+                    <img src="<?php echo $video_thumb_url; ?>" alt="" width="270px" height="149px" />
+                </a>
+            </div>
+        <?php endif; ?>
+
+        <?php if( $video ): ?>
+            <div id="video-container" class="media">
+                <a class="mylightbox" href="<?php echo $video['url']; ?>" >
+                    <img class="iframeplay1" src="<?php bloginfo('template_url') ?>/images/play.png" alt="play">
+                    <video id="my_video" src="<?php echo $video['url']; ?>" width="270px" height="149px" >
+                        <p>Your browser does not support the video tag.</p>
+                    </video>
+                </a>
+            </div>
+        <?php endif; ?>
+
+        <?php if( $audio ): ?>
+            <div class="media">
+                <a class="mylightbox audio-light-full" href="<?php echo $audio['url']; ?>" >
+                    <img class="iframeplay1" src="<?php bloginfo('template_url') ?>/images/play.png" alt="play">
+                </a>
+            </div>
+        <?php endif; ?>
+
+<?php endif; ?>

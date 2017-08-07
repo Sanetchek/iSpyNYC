@@ -1,0 +1,23 @@
+[24-Nov-2016 14:18:46 UTC] PHP Warning:  Illegal string offset 'url' in /home2/tanyail1/public_html/ispynyc/wp-content/themes/iSpyNYC/media.php on line 141
+[24-Nov-2016 14:18:46 UTC] PHP Warning:  Illegal string offset 'sizes' in /home2/tanyail1/public_html/ispynyc/wp-content/themes/iSpyNYC/media.php on line 29
+[24-Nov-2016 14:18:46 UTC] PHP Warning:  Illegal string offset 'large' in /home2/tanyail1/public_html/ispynyc/wp-content/themes/iSpyNYC/media.php on line 29
+[24-Nov-2016 14:18:46 UTC] PHP Warning:  Illegal string offset 'sizes' in /home2/tanyail1/public_html/ispynyc/wp-content/themes/iSpyNYC/media.php on line 30
+[24-Nov-2016 14:18:46 UTC] PHP Warning:  Illegal string offset 'thumbnail' in /home2/tanyail1/public_html/ispynyc/wp-content/themes/iSpyNYC/media.php on line 30
+[24-Nov-2016 14:18:46 UTC] PHP Warning:  Illegal string offset 'alt' in /home2/tanyail1/public_html/ispynyc/wp-content/themes/iSpyNYC/media.php on line 30
+[24-Nov-2016 14:18:46 UTC] PHP Warning:  Illegal string offset 'sizes' in /home2/tanyail1/public_html/ispynyc/wp-content/themes/iSpyNYC/media.php on line 29
+[24-Nov-2016 14:18:46 UTC] PHP Warning:  Illegal string offset 'large' in /home2/tanyail1/public_html/ispynyc/wp-content/themes/iSpyNYC/media.php on line 29
+[24-Nov-2016 14:18:46 UTC] PHP Warning:  Illegal string offset 'sizes' in /home2/tanyail1/public_html/ispynyc/wp-content/themes/iSpyNYC/media.php on line 30
+[24-Nov-2016 14:18:46 UTC] PHP Warning:  Illegal string offset 'thumbnail' in /home2/tanyail1/public_html/ispynyc/wp-content/themes/iSpyNYC/media.php on line 30
+[24-Nov-2016 14:18:46 UTC] PHP Warning:  Illegal string offset 'alt' in /home2/tanyail1/public_html/ispynyc/wp-content/themes/iSpyNYC/media.php on line 30
+[24-Nov-2016 14:18:46 UTC] PHP Warning:  Illegal string offset 'sizes' in /home2/tanyail1/public_html/ispynyc/wp-content/themes/iSpyNYC/media.php on line 29
+[24-Nov-2016 14:18:46 UTC] PHP Warning:  Illegal string offset 'large' in /home2/tanyail1/public_html/ispynyc/wp-content/themes/iSpyNYC/media.php on line 29
+[24-Nov-2016 14:18:46 UTC] PHP Warning:  Illegal string offset 'sizes' in /home2/tanyail1/public_html/ispynyc/wp-content/themes/iSpyNYC/media.php on line 30
+[24-Nov-2016 14:18:46 UTC] PHP Warning:  Illegal string offset 'thumbnail' in /home2/tanyail1/public_html/ispynyc/wp-content/themes/iSpyNYC/media.php on line 30
+[24-Nov-2016 14:18:46 UTC] PHP Warning:  Illegal string offset 'alt' in /home2/tanyail1/public_html/ispynyc/wp-content/themes/iSpyNYC/media.php on line 30
+[24-Nov-2016 14:18:46 UTC] PHP Warning:  Illegal string offset 'sizes' in /home2/tanyail1/public_html/ispynyc/wp-content/themes/iSpyNYC/media.php on line 29
+[24-Nov-2016 14:18:46 UTC] PHP Warning:  Illegal string offset 'large' in /home2/tanyail1/public_html/ispynyc/wp-content/themes/iSpyNYC/media.php on line 29
+[24-Nov-2016 14:18:46 UTC] PHP Warning:  Illegal string offset 'sizes' in /home2/tanyail1/public_html/ispynyc/wp-content/themes/iSpyNYC/media.php on line 30
+[24-Nov-2016 14:18:46 UTC] PHP Warning:  Illegal string offset 'thumbnail' in /home2/tanyail1/public_html/ispynyc/wp-content/themes/iSpyNYC/media.php on line 30
+[24-Nov-2016 14:18:46 UTC] PHP Warning:  Illegal string offset 'alt' in /home2/tanyail1/public_html/ispynyc/wp-content/themes/iSpyNYC/media.php on line 30
+[29-Nov-2016 18:33:07 UTC] PHP Warning:  array_unshift() expects parameter 1 to be array, null given in /home2/tanyail1/public_html/ispynyc/wp-includes/class-wp-xmlrpc-server.php on line 596
+[30-Nov-2016 11:05:07 UTC] PHP Warning:  array_unshift() expects parameter 1 to be array, null given in /home2/tanyail1/public_html/ispynyc/wp-includes/class-wp-xmlrpc-server.php on line 596
