@@ -1,4 +1,8 @@
 <article id="post-<?php the_ID(); ?>" class="article">
+	<h4>
+        <?php the_author(); ?>
+        <hr>
+    </h4>
 	<div class="images">
         <?php get_template_part( 'media' ); ?>
 	</div>
@@ -9,7 +13,6 @@
 			<?php echo get_post_meta($post->ID, '_location_value_key', true); ?>
 		</div>
 		<div><span class="date">Date:</span> <?php the_time( 'F d, Y' ); ?></div>
-		<div><span class="author">Author:</span> <?php the_author(); ?></div>
 	</div>
     <div class="clear"></div>
 	<div class="paragraph" style="max-height: 37px;">

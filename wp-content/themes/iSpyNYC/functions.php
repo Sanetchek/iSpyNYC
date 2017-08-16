@@ -1,10 +1,23 @@
 <?php
-//Удаление ссылки replytocom
+
+/*
+===================================================================
+          Remove link replytocom
+===================================================================
+*/
+
 add_filter('comment_reply_link', 'add_nofollow', 420, 4);
 
 function add_nofollow($link, $args, $comment, $post){
     return preg_replace( '/href=\'(.*(\?|&)replytocom=(\d+)#respond)/', 'href', $link );
 }
+
+/*
+===================================================================
+          Remove link replytocom
+===================================================================
+*/
+
 //Добавить комментарий ответ ссылки в nofollow
 function add_nofollow_to_reply_link( $link ) {
     return str_replace( '")\'>', '")\' rel=\'nofollow\'>', $link );
@@ -16,7 +29,11 @@ add_filter('comment_form_field_url', '__return_false');
 
 add_filter('duplicate_comment_id', '__return_false');
 
-//////////////////////////////////////////////////////////////////
+/*
+===================================================================
+          Register Scripts and Css
+===================================================================
+*/
 
 function ispynyc_scripts()
 {
@@ -35,7 +52,12 @@ function ispynyc_scripts()
 
 add_action('wp_enqueue_scripts', 'ispynyc_scripts');
 
-// This theme uses wp_nav_menu() in one locations.
+/*
+===================================================================
+          Register Nav Menu
+===================================================================
+*/
+
 register_nav_menus(array(
     'primary' => 'Primary Menu',
     'feedback' => 'Feedback Menu',
@@ -44,11 +66,13 @@ register_nav_menus(array(
 
 register_nav_menu('primary', 'Primary Menu');
 
-
 /*
- * Switch default core markup for search form, comment form, and comments
- * to output valid HTML5.
- */
+===================================================================
+          Switch default core markup for search form, comment form,
+          and comments to output valid HTML5.
+===================================================================
+*/
+
 add_theme_support('html5', array(
     'search-form',
     'comment-form',
@@ -58,10 +82,11 @@ add_theme_support('html5', array(
 ));
 
 /*
- * Enable support for Post Formats.
- *
- * See: https://codex.wordpress.org/Post_Formats
- */
+===================================================================
+          Enable support for Post Formats.
+===================================================================
+*/
+
 add_theme_support('post-formats', array(
     'aside',
     'image',
@@ -74,6 +99,12 @@ add_theme_support('post-formats', array(
     'chat',
 ));
 
+/*
+===================================================================
+          Register sidebar
+===================================================================
+*/
+
 register_sidebar(array(
     'name' => 'Advertise',
     'id' => 'ads',
@@ -82,17 +113,32 @@ register_sidebar(array(
     'after_widget' => '</div>',
 ));
 
-// Remove Admin bar
+/*
+===================================================================
+          Remove Admin bar
+===================================================================
+*/
+
 add_filter('show_admin_bar', '__return_false');
 
-// Remove WordPress Meta Generator
+/*
+===================================================================
+          Remove WordPress Meta Generator
+===================================================================
+*/
+
 remove_action('wp_head', 'rsd_link');
 remove_action('wp_head', 'wlwmanifest_link');
 remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0);
 remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
 remove_action('wp_head', 'wp_generator');
 remove_action('wp_head', 'feed_links_extra', 3);
-// REMOVE WP EMOJI
+
+/*
+===================================================================
+          REMOVE WP EMOJI
+===================================================================
+*/
 
 remove_action('wp_head', 'print_emoji_detection_script', 7);
 remove_action('wp_print_styles', 'print_emoji_styles');
@@ -100,10 +146,11 @@ remove_action('wp_print_styles', 'print_emoji_styles');
 remove_action('admin_print_scripts', 'print_emoji_detection_script');
 remove_action('admin_print_styles', 'print_emoji_styles');
 
-
-/**
- * Pagination
- */
+/*
+===================================================================
+           Pagination
+===================================================================
+*/
 
 function wp_corenavi() {
     global $wp_query;
@@ -128,7 +175,12 @@ function wp_corenavi() {
 
 ////////////////////////////////////////////    Custom Admin     /////////////////////////////////////////////
 
-/* Change Admin head color */
+/*
+===================================================================
+           Change Admin head color
+===================================================================
+*/
+
 add_action('admin_head', 'custom_colors');
 function custom_colors() {
     echo '<style type="text/css">
@@ -138,7 +190,12 @@ function custom_colors() {
 	</style>';
 }
 
-/* Удаление виджетов из Консоли WordPress */
+/*
+===================================================================
+           Remove WordPress widgets
+===================================================================
+*/
+
 function clear_dash(){
     $side = &$GLOBALS['wp_meta_boxes']['dashboard']['side']['core'];
     $normal = &$GLOBALS['wp_meta_boxes']['dashboard']['normal']['core'];
@@ -146,15 +203,17 @@ function clear_dash(){
     unset($side['dashboard_quick_press']); //Быстрая публикация
     unset($side['dashboard_primary']); //Блог WordPress
     unset($side['dashboard_secondary']); //Другие Новости WordPress
-
     unset($normal['dashboard_incoming_links']); //Входящие ссылки
     unset($normal['dashboard_plugins']); //Последние Плагины
 }
 add_action('wp_dashboard_setup', 'clear_dash' );
 
 /*
- * Remove the WordPress Logo from the WordPress Admin Bar
- */
+===================================================================
+           Remove WordPress Logo from the WordPress Admin Bar
+===================================================================
+*/
+
 function remove_wp_logo() {
     global $wp_admin_bar;
     $wp_admin_bar->remove_menu('wp-logo');
@@ -162,8 +221,11 @@ function remove_wp_logo() {
 add_action( 'wp_before_admin_bar_render', 'remove_wp_logo' );
 
 /*
- * Add Icons Instead of Text to the Main Admin Bar
- */
+===================================================================
+           Add Icons Instead of Text to the Main Admin Bar
+===================================================================
+*/
+
 function custom_adminbar_menu( $meta = TRUE ) {
     global $wp_admin_bar;
     if ( !is_user_logged_in() ) { return; }
@@ -175,6 +237,13 @@ function custom_adminbar_menu( $meta = TRUE ) {
     );
 }
 add_action( 'admin_bar_menu', 'custom_adminbar_menu', 15 );
+
+/*
+===================================================================
+           Custom menu css
+===================================================================
+*/
+
 function custom_menu_css() {
     $custom_menu_css = '<style type="text/css">  
         #wp-admin-bar-custom_menu img { display: block; margin: 0 auto; } /** moves icon over */  
@@ -192,8 +261,11 @@ function custom_menu_css() {
 add_action( 'admin_head', 'custom_menu_css' );
 
 /*
- * Change Login Logo
- */
+===================================================================
+           Change Login Logo
+===================================================================
+*/
+
 function my_login(){
     echo '
    <style type="text/css">
@@ -217,11 +289,16 @@ function my_login(){
 }
 add_action('login_head', 'my_login');
 
-/* Remove Contact Form 7 Links from dashboard menu items if not admin */
+/*
+===================================================================
+           Remove Pages if not Administrator
+===================================================================
+*/
+
 if (!(current_user_can('administrator'))) {
     function remove_wpcf7() {
-        remove_menu_page( 'wpcf7' );
-        remove_menu_page( 'edit-comments.php' );
+        remove_menu_page( 'wpcf7' );                      // Contact Form 7
+        remove_menu_page( 'edit-comments.php' );          // Редактор комментариев
         remove_menu_page( 'index.php' );                  //Консоль
         remove_menu_page( 'upload.php' );                 //Медиафайлы
         remove_menu_page( 'edit.php?post_type=page' );    //Страницы
@@ -235,27 +312,58 @@ if (!(current_user_can('administrator'))) {
     add_action('admin_menu', 'remove_wpcf7');
 }
 
-/* Ставим ссыллку с логотипа на сайт, а не на wordpress.org */
+/*
+===================================================================
+           Change logotype link to site (not to wordpress.org)
+===================================================================
+*/
+
 add_filter( 'login_headerurl', create_function('', 'return get_home_url();') );
-/* убираем title в логотипе "сайт работает на wordpress" */
+
+/*
+===================================================================
+           Remove title in logotype "сайт работает на wordpress"
+===================================================================
+*/
+
 add_filter( 'login_headertitle', create_function('', 'return false;') );
+
+/*
+===================================================================
+           Remove welcome panel
+===================================================================
+*/
 
 remove_action('welcome_panel', 'wp_welcome_panel');
 
-// Custom WordPress Footer
+/*
+===================================================================
+           Custom WordPress Footer
+===================================================================
+*/
+
 function remove_footer_admin () {
     echo '&copy; 2016 - iSpy NYC';
 }
 add_filter('admin_footer_text', 'remove_footer_admin');
 
-//Remove WordPress Version From The Admin Footer
+/*
+===================================================================
+           Remove WordPress Version From The Admin Footer
+===================================================================
+*/
+
 function remove_wordpress_version() {
     remove_filter( 'update_footer', 'core_update_footer' );
 }
 add_action( 'admin_menu', 'remove_wordpress_version' );
 
+/*
+===================================================================
+           Hide Help tab
+===================================================================
+*/
 
-// Hide Help tab
 function hide_help() {
     echo '<style type="text/css">
             #contextual-help-link-wrap { display: none !important; }
@@ -263,8 +371,12 @@ function hide_help() {
 }
 add_action('admin_head', 'hide_help');
 
+/*
+===================================================================
+            Disable Updates
+===================================================================
+*/
 
-/* Disable Updates */
 add_filter('pre_site_transient_update_core',create_function('$a', "return null;"));
 wp_clear_scheduled_hook('wp_version_check');
 
@@ -276,23 +388,19 @@ remove_action( 'load-update-core.php', 'wp_update_plugins' );
 add_filter( 'pre_site_transient_update_plugins', create_function( '$a', "return null;" ) );
 wp_clear_scheduled_hook( 'wp_update_plugins' );
 
+/*
+ ===================================================================
+             ACF oembed
+ ===================================================================
+*/
 
- /* ACF oembed */
 function get_video_thumbnail_uri( $video_uri ) {
-
     $thumbnail_uri = '';
-
-
-
     // determine the type of video and the video id
     $video = parse_video_uri( $video_uri );
-
-
-
     // get youtube thumbnail
     if ( $video['type'] == 'youtube' )
         $thumbnail_uri = 'http://img.youtube.com/vi/' . $video['id'] . '/mqdefault.jpg';
-
     // get vimeo thumbnail
     if( $video['type'] == 'vimeo' )
         $thumbnail_uri = get_vimeo_thumbnail_uri( $video['id'] );
@@ -302,94 +410,59 @@ function get_video_thumbnail_uri( $video_uri ) {
     // get default/placeholder thumbnail
     if( empty( $thumbnail_uri ) || is_wp_error( $thumbnail_uri ) )
         $thumbnail_uri = '';
-
     //return thumbnail uri
     return $thumbnail_uri;
-
 }
-
-
-/**
- * Parse the video uri/url to determine the video type/source and the video id
- */
+// Parse the video uri/url to determine the video type/source and the video id
 function parse_video_uri( $url ) {
-
     // Parse the url 
     $parse = parse_url( $url );
-
     // Set blank variables
     $video_type = '';
     $video_id = '';
-
     // Url is http://youtu.be/xxxx
     if ( $parse['host'] == 'youtu.be' ) {
-
         $video_type = 'youtube';
-
         $video_id = ltrim( $parse['path'],'/' );
-
     }
-
     // Url is http://www.youtube.com/watch?v=xxxx 
     // or http://www.youtube.com/watch?feature=player_embedded&v=xxx
     // or http://www.youtube.com/embed/xxxx
     if ( ( $parse['host'] == 'youtube.com' ) || ( $parse['host'] == 'www.youtube.com' ) ) {
-
         $video_type = 'youtube';
-
         parse_str( $parse['query'] );
-
         $video_id = $v;
-
         if ( !empty( $feature ) )
             $video_id = end( explode( 'v=', $parse['query'] ) );
-
         if ( strpos( $parse['path'], 'embed' ) == 1 )
             $video_id = end( explode( '/', $parse['path'] ) );
-
     }
-
     // Url is http://www.vimeo.com
     if ( ( $parse['host'] == 'vimeo.com' ) || ( $parse['host'] == 'www.vimeo.com' ) ) {
-
         $video_type = 'vimeo';
-
         $video_id = ltrim( $parse['path'],'/' );
-
     }
     $host_names = explode(".", $parse['host'] );
     $rebuild = ( ! empty( $host_names[1] ) ? $host_names[1] : '') . '.' . ( ! empty($host_names[2] ) ? $host_names[2] : '');
     // Url is an oembed url wistia.com
     if ( ( $rebuild == 'wistia.com' ) || ( $rebuild == 'wi.st.com' ) ) {
-
         $video_type = 'wistia';
-
         if ( strpos( $parse['path'], 'medias' ) == 1 )
             $video_id = end( explode( '/', $parse['path'] ) );
-
     }
-
     // If recognised type return video array
     if ( !empty( $video_type ) ) {
-
         $video_array = array(
             'type' => $video_type,
             'id' => $video_id
         );
-
         return $video_array;
-
     } else {
-
         return false;
-
     }
 
 }
-
-
-/* Takes a Vimeo video/clip ID and calls the Vimeo API v2 to get the large thumbnail URL.
-*/
+//Takes a Vimeo video/clip ID and calls the Vimeo API v2 to get the large thumbnail URL.
 function get_vimeo_thumbnail_uri( $clip_id ) {
     $vimeo_api_uri = 'http://vimeo.com/api/v2/video/' . $clip_id . '.php';
     $vimeo_response = wp_remote_get( $vimeo_api_uri );
@@ -399,11 +472,8 @@ function get_vimeo_thumbnail_uri( $clip_id ) {
         $vimeo_response = unserialize( $vimeo_response['body'] );
         return $vimeo_response[0]['thumbnail_large'];
     }
-
 }
-/**
- * Takes a wistia oembed url and gets the video thumbnail url.
- */
+//Takes a wistia oembed url and gets the video thumbnail url.
 function get_wistia_thumbnail_uri( $video_uri ) {
     if ( empty($video_uri) )
         return false;
@@ -415,8 +485,13 @@ function get_wistia_thumbnail_uri( $video_uri ) {
         $wistia_response = json_decode( $wistia_response['body'], true );
         return $wistia_response['thumbnail_url'];
     }
-
 }
+
+/*
+ ===================================================================
+             Remove Sub-menu page
+ ===================================================================
+*/
 
 function remove_admin_submenu_items() {
     remove_submenu_page( 'index.php', 'update-core.php' );
@@ -424,7 +499,11 @@ function remove_admin_submenu_items() {
 
 add_action( 'admin_menu', 'remove_admin_submenu_items');
 
-
+/*
+ ===================================================================
+             Hide other users' posts in admin panel
+ ===================================================================
+*/
 
 function posts_for_current_author($query) {
     global $pagenow;
@@ -440,17 +519,20 @@ function posts_for_current_author($query) {
 }
 add_filter('pre_get_posts', 'posts_for_current_author');
 
+/*
+ ===================================================================
+             ACF Plugin New post from frontend
+ ===================================================================
+*/
 
-
-// Новый пост с фронтенда
 function my_pre_save_post( $post_id ) {
 
-    // Проверить что пост новый
+    // Check that post is new
     if( $post_id != 'new' ) {
         return $post_id;
     }
 
-    // Создание нового поста
+    // Create new post
     $post = array(
         'post_type'         => 'post', // Your post type ( post, page, custom post type )
         'post_status'       => 'publish', // (publish, draft, private, etc.)
@@ -477,6 +559,11 @@ function my_pre_save_post( $post_id ) {
 }
 add_filter('acf/pre_save_post' , 'my_pre_save_post', 10, 1 );
 
+/*
+ ===================================================================
+             Login redirect if not administrator
+ ===================================================================
+*/
 
 add_filter("login_redirect", "sp_login_redirect", 10, 3);
 
@@ -487,6 +574,12 @@ function sp_login_redirect($redirect_to, $request, $user){
     return home_url();
 }
 
+/*
+   ===================================================================
+               Users redirect to main page
+   ===================================================================
+*/
+
 add_action('admin_init','users_redirect');
 
 function users_redirect(){
@@ -495,6 +588,12 @@ function users_redirect(){
         die();
     }
 }
+
+/*
+   ===================================================================
+               Limit/Restrict media library for users
+   ===================================================================
+*/
 
 add_action('pre_get_posts','ml_restrict_media_library');
 
@@ -509,7 +608,11 @@ function ml_restrict_media_library( $wp_query_obj ) {
     return;
 }
 
-  ///////////////////////////////////////////////////////////////
+/*
+   ===================================================================
+               Simple ajax comment form mod
+   ===================================================================
+*/
 /**
  * Adding processing message at comment form
  * Use inline style so we don't need to load more file
@@ -521,19 +624,22 @@ add_action( 'comment_form', 'simple_ajax_comment_form_mod' );
 
 
 
-/////////////////////////////////////////////////////////////
 /*
-function wp_comments_queue_js() {
-    wp_enqueue_script( 'comment-reply' );
-}
-add_action( 'wp_enqueue_scripts', 'wp_comments_queue_js' );*/
+   ===================================================================
+               Disable comment js
+   ===================================================================
+*/
+
 function disable_comment_js(){
     wp_deregister_script( 'comment-reply' );
 }
 add_action('init','disable_comment_js');
 
-///////////////////////////////////////////////////////////////
-
+/*
+   ===================================================================
+               Password strength
+   ===================================================================
+*/
 
 function wc_ninja_remove_password_strength() {
     if ( wp_script_is( 'wc-password-strength-meter', 'enqueued' ) ) {
@@ -542,7 +648,11 @@ function wc_ninja_remove_password_strength() {
 }
 add_action( 'wp_print_scripts', 'wc_ninja_remove_password_strength', 100 );
 
-
+/*
+   ===================================================================
+               Comment form
+   ===================================================================
+*/
 
 function ispynyc_comment( $comment, $args, $depth ) {
     $GLOBALS['comment'] = $comment;
@@ -586,7 +696,11 @@ function ispynyc_comment( $comment, $args, $depth ) {
     endswitch;
 }
 
-/////////////////////////////////////////////////////////////////////////////
+/*
+   ===================================================================
+               Reorder comment fields
+   ===================================================================
+*/
 
 add_filter('comment_form_fields', 'kama_reorder_comment_fields' );
 function kama_reorder_comment_fields( $fields ){
@@ -622,5 +736,35 @@ function change_email($email) {
 }
 
 add_filter('wp_mail_from','change_email');
+
+
+/*
+   ===================================================================
+               Delete original size of image
+   ===================================================================
+*/
+
+add_filter( 'wp_generate_attachment_metadata', 'delete_fullsize_image' );
+function delete_fullsize_image( $metadata )
+{
+    $upload_dir = wp_upload_dir();
+    $full_image_path = trailingslashit( $upload_dir['basedir'] ) . $metadata['file'];
+    $deleted = unlink( $full_image_path );
+
+    return $metadata;
+}
+
+/*
+   ===================================================================
+               Delete thumbnail image
+   ===================================================================
+*/
+
+add_filter( 'intermediate_image_sizes', 'delete_intermediate_image_sizes' );
+function delete_intermediate_image_sizes( $sizes ){
+    return array_diff( $sizes, array(
+        'medium_large', // 'thumbnail', 'medium', 'medium_large', 'large',
+    ) );
+}
 
 ?>

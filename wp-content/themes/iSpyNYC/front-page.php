@@ -4,7 +4,7 @@
     <div id="content">
         <?php
             $loop_paged = (get_query_var('page')) ? get_query_var('page') : $paged;
-            query_posts('cat=-1&paged=' . $loop_paged);
+            query_posts('cat=0&paged=' . $loop_paged);
         ?>
 
         <?php if ( have_posts() ) : ?>
