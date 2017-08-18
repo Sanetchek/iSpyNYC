@@ -9,8 +9,8 @@ if (readMore != "") {
         comStyle = window.getComputedStyle(parag[i]);
         h = parseInt(comStyle.height);
 
-        if (h < 37) {
-            readMore[i].style.display = "none";
+        if (h > 36) {
+            readMore[i].style.display = "inline";
         }
     }
 }

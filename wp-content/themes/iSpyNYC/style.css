@@ -436,7 +436,7 @@ div#html5lightbox-div {
 }
 
 #content .read-more {
-    display: inline;
+    display: none;
     font-size: 11px;
     color: #aea8a8;
     font-style: italic;
