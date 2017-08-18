@@ -41,13 +41,8 @@ section {
     display: block;
 }
 
-.clear:after {
-    content: "&nbsp;";
-    display: block;
+.clear {
     clear: both;
-    visibility: hidden;
-    height: 0;
-    line-height: 0;
 }
 
 /* Header */
@@ -381,7 +376,8 @@ section {
 #content .images {
     position: relative;
     max-width: 270px;
-    height: 150px;
+    max-height: 150px;
+    height: 100%;
     overflow: hidden;
     margin-right: 5px;
     float: left;
