@@ -13,7 +13,7 @@
                 'theme_location' => 'footer-menu',
             ) );
             ?>
-            <p>Property of © BUZZARt LLC.,<br>All rights reserved.</p>
+            <p>© 2016 iSpyNYC.org<br>All rights reserved.</p>
         </footer>
     </div>
 </aside>

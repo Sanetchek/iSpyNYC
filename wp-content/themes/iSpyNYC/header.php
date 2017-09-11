@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>iSpy NYC</title>
+    <title><?php bloginfo( 'name' ); ?></title>
+    <meta name="description" content="<?php bloginfo( 'description' ); ?>">
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- [if lt IE]>
@@ -28,16 +29,21 @@
         <div class="head-bg">
             <div id="head-wrap">
                 <div id="logo" class="container">
+                    <h1><?php bloginfo( 'name' ); ?></h1>
                     <a href="<?php echo get_home_url(); ?>"><img
-                            src="<?php bloginfo('template_url') ?>/images/iSpy.svg" alt="logo"></a>
+                            src="<?php bloginfo('template_url') ?>/images/iSpy.svg" alt="logo">
+                    </a>
                     <div class="logoright">
                         <?php if (!is_user_logged_in()){ ?>
                             <a href="<?php echo wp_login_url(); ?>" title="Login">Login</a><span> | </span>
                             <?php wp_register('', ''); ?>
                         <?php } else { ?>
                             <span>
-                                Hello, <?php $user_info  = wp_get_current_user();
-                                echo $user_info->user_login; ?> |
+                                Hello,
+                                <a href="<?php echo get_home_url(); ?>/user-profile/">
+                                    <?php $user_info  = wp_get_current_user();
+                                    echo $user_info->user_login; ?>
+                                </a> |
                             </span>
                             <a href="<?php echo wp_logout_url(home_url()); ?>">logout</a><br />
                         <?php }?>

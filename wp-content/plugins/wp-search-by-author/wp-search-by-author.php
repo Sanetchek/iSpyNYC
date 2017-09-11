@@ -27,7 +27,7 @@ function db_filter_authors_search( $posts_search ) {
         'search' => sprintf( '*%s*', $search ),
         'search_fields' => array(
             'display_name',
-            'user_login',
+            'user_login'
         ),
         'fields' => 'ID',
     );

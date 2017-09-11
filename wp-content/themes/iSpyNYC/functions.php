@@ -2,6 +2,14 @@
 
 /*
 ===================================================================
+          Require
+===================================================================
+*/
+
+require_once('users/user_admin.php');
+
+/*
+===================================================================
           Remove link replytocom
 ===================================================================
 */
@@ -37,16 +45,18 @@ add_filter('duplicate_comment_id', '__return_false');
 
 function ispynyc_scripts()
 {
+    wp_enqueue_style('font-awesome', get_template_directory_uri() . '/font-awesome/css/font-awesome.min.css');
+    wp_enqueue_style('style', get_template_directory_uri() . '/style.css');
+
     wp_enqueue_script('bg', get_template_directory_uri() . '/js/bg.js', false, null, true);
     wp_enqueue_script('script', get_template_directory_uri() . '/js/script.js', false, null, true);
     wp_enqueue_script('comment', get_template_directory_uri() . '/js/comment.js', false, null, true);
     wp_enqueue_script('comment-reply', get_template_directory_uri() . '/js/comment-reply.js', false, null, true);
     wp_enqueue_script('content', get_template_directory_uri() . '/js/content.js', false, null, true);
     wp_enqueue_script('toggle-menu', get_template_directory_uri() . '/js/toggle-menu.js', false, null, true);
-    wp_enqueue_style('style', get_template_directory_uri() . '/style.css');
-    wp_enqueue_style('font-awesome', get_template_directory_uri() . '/font-awesome/css/font-awesome.min.css');
-    wp_enqueue_script( 'jquery' );
+    wp_enqueue_script('re-captcha', 'https://www.google.com/recaptcha/api.js', false, null, false);
 
+    wp_enqueue_script( 'jquery' );
     wp_enqueue_script('html5lightbox', get_template_directory_uri() . '/html5lightbox/html5lightbox.js');
 }
 
@@ -538,6 +548,7 @@ function my_pre_save_post( $post_id ) {
         'post_status'       => 'publish', // (publish, draft, private, etc.)
         'post_title'        => wp_strip_all_tags($_POST['acf']['field_583d3417ecba4']), // Заголовок ACF field key
         'post_theme'        => $_POST['acf']['field_583d3461ecba5'],
+        'post_location'     => $_POST['acf']['field_592d283cc8ad1'],
         'post_images'       => $_POST['acf']['field_581b8d93e5c86'],
         'post_oembed'       => $_POST['acf']['field_582b2adcce961'],
         'post_video'        => $_POST['acf']['field_58203b225b1b4'],
@@ -738,33 +749,5 @@ function change_email($email) {
 add_filter('wp_mail_from','change_email');
 
 
-/*
-   ===================================================================
-               Delete original size of image
-   ===================================================================
-*/
-
-add_filter( 'wp_generate_attachment_metadata', 'delete_fullsize_image' );
-function delete_fullsize_image( $metadata )
-{
-    $upload_dir = wp_upload_dir();
-    $full_image_path = trailingslashit( $upload_dir['basedir'] ) . $metadata['file'];
-    $deleted = unlink( $full_image_path );
-
-    return $metadata;
-}
-
-/*
-   ===================================================================
-               Delete thumbnail image
-   ===================================================================
-*/
-
-add_filter( 'intermediate_image_sizes', 'delete_intermediate_image_sizes' );
-function delete_intermediate_image_sizes( $sizes ){
-    return array_diff( $sizes, array(
-        'medium_large', // 'thumbnail', 'medium', 'medium_large', 'large',
-    ) );
-}
 
 ?>

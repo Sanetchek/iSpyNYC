@@ -9,7 +9,7 @@ if (readMore != "") {
         comStyle = window.getComputedStyle(parag[i]);
         h = parseInt(comStyle.height);
 
-        if (h > 36) {
+        if (h > 42) {
             readMore[i].style.display = "inline";
         }
     }
@@ -20,11 +20,11 @@ var selectedMore;
 
 function showContent(node) {
     selectedMore = node;
-    if (selectedMore.previousElementSibling.style.maxHeight == "37px") {
+    if (selectedMore.previousElementSibling.style.maxHeight == "42px") {
         selectedMore.previousElementSibling.style.maxHeight = "";
         selectedMore.innerHTML = "read less";
     } else {
-        selectedMore.previousElementSibling.style.maxHeight = "37px";
+        selectedMore.previousElementSibling.style.maxHeight = "42px";
         selectedMore.innerHTML = "read more";
     }
 }

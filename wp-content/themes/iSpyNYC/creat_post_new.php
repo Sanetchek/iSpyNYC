@@ -23,7 +23,7 @@
             <?php  } else {
                 $new_post = array(
                     'post_id' => 'new', // Создать новый пост
-                    'field_groups' => array(233, 61, 237, 239), // Группы полей для создания поста
+                    'field_groups' => array(233, 343, 61, 237, 239), // Группы полей для создания поста
                     'form' => true,
                     'return' => '%post_url%', // Переадресация на url созданного поста
                     'html_before_fields' => '',
