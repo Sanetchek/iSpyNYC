@@ -720,6 +720,24 @@ div#wpcf7-f91-p92-o1 p+p {
     min-height: 178px !important;
 }
 
+.acf-form-submit {
+    float: left;
+}
+
+#post .acf-form-submit input[type="submit"] {
+    margin: 0 10px 0 0!important;
+}
+
+span.new-post-cancel {
+    font-size: 12px;
+}
+
+.new-post-cancel a {
+    color: #FF0000;
+    text-decoration: none;
+    padding-left: 5px;
+}
+
 a.btn {
     display: block;
     width: 48%;

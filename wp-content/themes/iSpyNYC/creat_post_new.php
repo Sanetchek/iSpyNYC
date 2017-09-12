@@ -33,7 +33,8 @@
                 );
                 acf_form($new_post);
             } ?>
-
+            <span class="new-post-cancel"> or <a href="<?php echo home_url(); ?>">Cancel</a></span>
+            <div class="clear"></div>
 		</article><!-- #content -->
 	</div><!-- #container -->
 
