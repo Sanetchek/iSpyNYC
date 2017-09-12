@@ -24,7 +24,9 @@
 	</div>
     <div class="clear"></div>
 	<div class="paragraph" style="max-height: 42px;">
-        <?php the_content(); ?>
+		<div class="paragraph-wrap">
+        	<?php the_content(); ?>
+        </div>
     </div>
     <div class="read-more">read more</div>
 

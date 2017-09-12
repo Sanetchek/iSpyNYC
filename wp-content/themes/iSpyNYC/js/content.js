@@ -1,15 +1,17 @@
 'use strict';
 
 var parag = document.querySelectorAll(".paragraph");
+var paragWrap = document.querySelectorAll(".paragraph-wrap");
 var readMore = document.getElementsByClassName("read-more");
-var comStyle = "", h = 0;
+var comStyle = "";
+var maxHeight = 0;
 
 if (readMore != "") {
     for (var i = 0; i < parag.length; i++) {
-        comStyle = window.getComputedStyle(parag[i]);
-        h = parseInt(comStyle.height);
+        comStyle = window.getComputedStyle(paragWrap[i]);
+        maxHeight = parseInt(comStyle.height);
 
-        if (h > 42) {
+        if (maxHeight > 42) {
             readMore[i].style.display = "inline";
         }
     }
