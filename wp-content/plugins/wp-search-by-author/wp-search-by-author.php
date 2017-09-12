@@ -9,7 +9,6 @@ Description: WordPress Search by author
  * Include posts from authors in the search results where
  * either their display name or user login matches the query string
  *
- * @author danielbachhuber
  */
 add_filter( 'posts_search', 'db_filter_authors_search' );
 function db_filter_authors_search( $posts_search ) {
