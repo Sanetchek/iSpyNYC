@@ -13,8 +13,6 @@
         <?php else: ?>
             <!-- no posts found -->
         <?php endif; ?>
-
-
     </div>
 
 <?php get_template_part('ads'); ?>
