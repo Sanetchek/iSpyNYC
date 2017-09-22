@@ -12,7 +12,7 @@
 	</div>
 	<div class="meta">
 		<div><span class="subject">Subject:</span> <?php echo the_category(', '); ?></div>
-		<div><span class="title">Title:</span> <h2><?php the_title(); ?></h2></div>
+		<div><span class="title">Title:</span> <h2><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2></div>
 
 		<?php if( get_post_meta($post->ID, 'location_field', true) ): ?>
 			<div><span class="location">Location:</span>
@@ -41,4 +41,6 @@
 			?>
 		</div>
 	</div>
+
+	<a class="ispy-popup" style="float: none;" data-page="<?php the_ID(); ?>" data-url="<?php echo admin_url('admin-ajax.php'); ?>">Load Popup</a>
 </article>

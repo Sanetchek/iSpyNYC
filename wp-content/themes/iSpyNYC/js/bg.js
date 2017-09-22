@@ -1,7 +1,9 @@
 "use strict";
 var day = new Date();
 var header = document.querySelector("#head-wrap");
-var active = header.querySelector("#left li.current-menu-item > a");
+if (header) {
+    var active = header.querySelector("#left li.current-menu-item > a");
+}
 var btn = document.getElementsByClassName("btn");
 var bgColor = "#0409c3";
 
@@ -31,7 +33,9 @@ case 6:
 for(var i = 0; i < btn.length; i++) {
     btn[i].style.backgroundColor = bgColor;
 }
+
 header.style.backgroundColor = bgColor;
+
 if (active) {
     active.style.backgroundColor = bgColor;
 }
