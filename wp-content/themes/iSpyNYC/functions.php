@@ -61,10 +61,6 @@ function ispynyc_scripts()
 
     wp_enqueue_script( 'jquery' );
     wp_enqueue_script('html5lightbox', get_template_directory_uri() . '/html5lightbox/html5lightbox.js');
-
-//    wp_deregister_script( 'jquery' );
-//    wp_register_script( 'jquery', get_template_directory_uri() . '/js/jquery-3.2.1.min.js');
-//    wp_enqueue_script( 'jquery' );
 }
 
 add_action('wp_enqueue_scripts', 'ispynyc_scripts');

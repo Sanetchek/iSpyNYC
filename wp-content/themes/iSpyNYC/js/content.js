@@ -5,14 +5,15 @@ var paragWrap = document.querySelectorAll(".paragraph-wrap");
 var readMore = document.getElementsByClassName("read-more");
 var comStyle = "";
 var maxHeight = 0;
+if (readMore.length > 0) {
+    if (readMore != "") {
+        for (var i = 0; i < parag.length; i++) {
+            comStyle = window.getComputedStyle(paragWrap[i]);
+            maxHeight = parseInt(comStyle.height);
 
-if (readMore != "") {
-    for (var i = 0; i < parag.length; i++) {
-        comStyle = window.getComputedStyle(paragWrap[i]);
-        maxHeight = parseInt(comStyle.height);
-
-        if (maxHeight > 42) {
-            readMore[i].style.display = "inline";
+            if (maxHeight > 42) {
+                readMore[i].style.display = "inline";
+            }
         }
     }
 }
@@ -39,13 +40,13 @@ content.onclick = function (event) {
     showContent(target);
 };
 
-/*
- =====================================================
-     Ajax Popup
- =====================================================
-*/
-
 jQuery(document).ready(function ($){
+
+    /*
+     =====================================================
+     Ajax Popup
+     =====================================================
+     */
     $(document).on('click', '.ispy-popup', function(){  // click on button with class = ispy-popup
 
         var page = $(this).data('page'); // take from .ispy-popup, data-page = value
@@ -78,4 +79,11 @@ jQuery(document).ready(function ($){
         });
 
     });
+
+    /*
+     =====================================================
+     Slider
+     =====================================================
+     */
+
 });

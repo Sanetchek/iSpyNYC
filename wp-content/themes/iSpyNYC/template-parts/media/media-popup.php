@@ -29,17 +29,17 @@ if( $audio ) {
 }
 ?>
 
-<div class="media-array">
+<div class="al-slider">
     <?php if( $images ): ?>
         <?php foreach( $images as $image ): ?>
-            <div class="media">
+            <div class="slide">
                 <img src="<?php echo $image['sizes']['large']; ?>" alt="<?php echo $image['alt']; ?>" />
             </div>
         <?php endforeach; ?>
     <?php endif; ?>
 
     <?php if( $iframe ): ?>
-        <div class="embed-container media">
+        <div class="embed-container slide">
 
             <?php
             $iframe_url = get_field('oembed', FALSE, FALSE);
@@ -51,7 +51,7 @@ if( $audio ) {
     <?php endif; ?>
 
     <?php if( $video ): ?>
-        <div id="video-container" class="media">
+        <div id="video-container" class="slide">
             <video id="my_video" src="<?php echo $video['url']; ?>" controls>
                 <p>Your browser does not support the video tag.</p>
             </video>
@@ -59,12 +59,15 @@ if( $audio ) {
     <?php endif; ?>
 
     <?php if( $audio ): ?>
-        <div class="media">
+        <div class="slide">
             <audio controls>
                 <source src="<?php echo $audio['url']; ?>" >
                 <p>Your browser does not support the audio tag.</p>
             </audio>
         </div>
     <?php endif; ?>
+
+    <div class="prev-slide"><</div>
+    <div class="next-slide">></div>
 
 </div>

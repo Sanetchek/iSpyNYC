@@ -385,7 +385,7 @@ section {
     margin-top: 15px;
 }
 
-#content .images {
+#content .article .images {
     position: relative;
     max-width: 270px;
     max-height: 150px;
@@ -395,14 +395,14 @@ section {
     float: left;
 }
 
-#content .images .more-media {
+#content .article .images .more-media {
     position: absolute;
     width: 135px;
     height: 150px;
     right: 0;
 }
 
-#content .images .more-media span {
+#content .article .images .more-media span {
     position: absolute;
     width: 131px;
     text-align: center;
@@ -412,14 +412,14 @@ section {
     z-index: 9;
 }
 
-#content .images  .media-bg {
+#content .article .images  .media-bg {
     background-color: #000;
     width: 100%;
     height: 100%;
     opacity: 0.5;
 }
 
-#content .images img {
+#content .article .images img {
     max-width: 100%;
     float: left;
     z-index: 8;
@@ -1059,15 +1059,6 @@ footer#footer-menu a:hover {
         Modale
 */
 
-#ispy-modal .single-post .media {
-    width: 100%;
-    position: relative;
-    float: left;
-    height: auto;
-    margin: 6px 2.2%;
-    background-color: black;
-}
-
 #ispy-modal video#my_video {
     width: 100%;
 }
@@ -1111,12 +1102,10 @@ a.ispy-popup {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #fefefe;
     width: 80vw;
     height: 80vh;
     -webkit-animation-name: slideIn;
     animation-name: slideIn;
-    overflow: scroll;
 }
 
 /* The Close Button */
@@ -1163,6 +1152,76 @@ a.ispy-popup {
     to {opacity: 1}
 }
 
+
+/* Popup Slider */
+#content #ispy-modal .images {
+    float: left;
+    width: 70%;
+}
+
+#content #ispy-modal .post-content {
+    width: 25%;
+    float: right;
+    height: 80vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: 1%;
+    background: #fff;
+}
+
+
+.al-slider {
+    position: relative;
+    overflow: hidden;
+    height: 72vh;
+}
+
+.al-slider .active {
+    display: block !important;
+}
+
+.al-slider .slide {
+    display: none;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    float: left;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+}
+
+.al-slider .slide img {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.prev-slide, .next-slide {
+    position: absolute;
+    cursor: pointer;
+    background: rgba(255,255,255,0.6);
+    height: 30px;
+    width: 30px;
+    text-align: center;
+    font-size: 30px;
+}
+
+.prev-slide {
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+}
+
+.next-slide {
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+}
 
 /* Login Style
 
