@@ -40,8 +40,88 @@ content.onclick = function (event) {
     showContent(target);
 };
 
-jQuery(document).ready(function ($){
+$(document).ready(function (){
 
+    /*
+     =====================================================
+     Slider
+     =====================================================
+     */
+
+    alSlider(  );
+
+    function alSlider( getSliderClass, getSlideClass, getPrevSlide, getNextSlide ) {
+
+        // check all classes
+        getSliderClass = ( !getSliderClass ) ? getSliderClass = '.al-slider' : getSliderClass;
+        getSlideClass = ( !getSlideClass ) ? getSlideClass = '.slide' : getSlideClass;
+        getPrevSlide = ( !getPrevSlide ) ? getPrevSlide = '.prev-slide' : getPrevSlide;
+        getNextSlide = ( !getNextSlide ) ? getNextSlide = '.next-slide' : getNextSlide;
+
+        // variables
+        var slider = $( getSliderClass );
+        var slide = slider.find( getSlideClass );
+        var countSlides = slide.length;
+
+        var lastSlideIndex = countSlides - 1;
+        var prevSlideBtn = slider.find( getPrevSlide );
+        var nextSlideBtn = slider.find( getNextSlide );
+
+
+
+        activateSlide();
+
+        function activateSlide() {
+            var slideIndex = slider.find('.active').index();
+            slideIndex = ( slideIndex < 0 ) ? 0 : slideIndex;
+            var currentSlide = slide[slideIndex];
+            currentSlide.classList.add('active');
+
+            previousSlide( currentSlide, slideIndex );
+            nextSlide( currentSlide, slideIndex );
+        }
+
+        function previousSlide( curSlide, index ) {
+            prevSlideBtn.on('click', function(){
+
+                switch (index) {
+                    case 0:
+                        curSlide.classList.remove('active');
+                        curSlide = slide[lastSlideIndex]; // current Slide takes index of last Slide
+                        curSlide.classList.add('active');
+                        index = slider.find('.active').index();
+                        console.log(index);
+
+                        break;
+                    case lastSlideIndex:
+                        curSlide.classList.remove('active');
+                        curSlide = slide[lastSlideIndex - 1];
+                        curSlide.classList.add('active');
+                        index = slider.find('.active').index();
+                        console.log(index);
+
+                        break;
+                    default:
+                        curSlide.classList.remove('active');
+                        curSlide = slide[index - 1];
+                        curSlide.classList.add('active');
+                        index = slider.find('.active').index();
+                        console.log(index);
+
+                        break;
+                }
+            });
+        }
+
+        function nextSlide( curSlide, index ) {
+            nextSlideBtn.on('click', function(){
+                curSlide.classList.remove('active');
+                curSlide = slide[index + 1];
+                curSlide.classList.add('active');
+                index = slider.find('.active').index();
+            });
+        }
+    }
     /*
      =====================================================
      Ajax Popup
@@ -80,10 +160,5 @@ jQuery(document).ready(function ($){
 
     });
 
-    /*
-     =====================================================
-     Slider
-     =====================================================
-     */
-
+   
 });

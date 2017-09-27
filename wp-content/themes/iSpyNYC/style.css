@@ -385,7 +385,7 @@ section {
     margin-top: 15px;
 }
 
-#content .article .images {
+#content .article > .images {
     position: relative;
     max-width: 270px;
     max-height: 150px;
@@ -395,14 +395,14 @@ section {
     float: left;
 }
 
-#content .article .images .more-media {
+#content .article > .images .more-media {
     position: absolute;
     width: 135px;
     height: 150px;
     right: 0;
 }
 
-#content .article .images .more-media span {
+#content .article > .images .more-media span {
     position: absolute;
     width: 131px;
     text-align: center;
@@ -412,14 +412,14 @@ section {
     z-index: 9;
 }
 
-#content .article .images  .media-bg {
+#content .article > .images  .media-bg {
     background-color: #000;
     width: 100%;
     height: 100%;
     opacity: 0.5;
 }
 
-#content .article .images img {
+#content .article > .images img {
     max-width: 100%;
     float: left;
     z-index: 8;

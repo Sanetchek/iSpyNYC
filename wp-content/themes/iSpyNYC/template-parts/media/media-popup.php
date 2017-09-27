@@ -39,7 +39,7 @@ if( $audio ) {
     <?php endif; ?>
 
     <?php if( $iframe ): ?>
-        <div class="embed-container slide">
+        <div class="slide">
 
             <?php
             $iframe_url = get_field('oembed', FALSE, FALSE);
@@ -51,7 +51,7 @@ if( $audio ) {
     <?php endif; ?>
 
     <?php if( $video ): ?>
-        <div id="video-container" class="slide">
+        <div class="slide">
             <video id="my_video" src="<?php echo $video['url']; ?>" controls>
                 <p>Your browser does not support the video tag.</p>
             </video>
@@ -71,3 +71,9 @@ if( $audio ) {
     <div class="next-slide">></div>
 
 </div>
+
+<script>
+    $(document).ready(function () {
+        
+    });
+</script>
