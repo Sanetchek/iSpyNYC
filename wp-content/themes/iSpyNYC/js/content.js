@@ -13,15 +13,9 @@
             var paragWrap = $(options.wrapper);
             var readMore = $(options.readMore);
 
-            console.log(parag.length);
-            console.log(paragWrap.length);
-            console.log(readMore.length);
-
             if (readMore.length > 0) {
-                for (var i = 0; i < parag.length; i++) {
-                    if (paragWrap[i].height() > 42) {
-                        readMore[i].show();
-                    }
+                if (paragWrap.height() > 42) {
+                    readMore.show();
                 }
             }
 
