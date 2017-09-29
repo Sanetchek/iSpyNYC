@@ -1163,7 +1163,7 @@ a.ispy-popup {
     width: 25%;
     float: right;
     height: 80vh;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
     padding: 1%;
     background: #fff;

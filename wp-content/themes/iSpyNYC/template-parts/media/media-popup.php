@@ -70,10 +70,9 @@ if( $audio ) {
     <div class="prev-slide"><</div>
     <div class="next-slide">></div>
 
+    <script type="text/javascript">
+        jQuery(function ($) {
+            $('.al-slider').alSlider();
+        });
+    </script>
 </div>
-
-<script>
-    $(document).ready(function () {
-        
-    });
-</script>

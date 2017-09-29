@@ -48,22 +48,40 @@ add_filter('duplicate_comment_id', '__return_false');
 
 function ispynyc_scripts()
 {
+    // jquery
+    wp_enqueue_script('jquery');
+
+    // style
     wp_enqueue_style('font-awesome', get_template_directory_uri() . '/font-awesome/css/font-awesome.min.css');
     wp_enqueue_style('style', get_template_directory_uri() . '/style.css');
 
-    wp_enqueue_script('bg', get_template_directory_uri() . '/js/bg.js', false, null, true);
-    wp_enqueue_script('script', get_template_directory_uri() . '/js/script.js', false, null, true);
-    wp_enqueue_script('comment', get_template_directory_uri() . '/js/comment.js', false, null, true);
-    wp_enqueue_script('comment-reply', get_template_directory_uri() . '/js/comment-reply.js', false, null, true);
-    wp_enqueue_script('content', get_template_directory_uri() . '/js/content.js', false, null, true);
-    wp_enqueue_script('toggle-menu', get_template_directory_uri() . '/js/toggle-menu.js', false, null, true);
-    wp_enqueue_script('re-captcha', 'https://www.google.com/recaptcha/api.js', false, null, false);
+    // scripts
+    wp_enqueue_script('bg', get_template_directory_uri() . '/js/bg.js', array( 'jquery' ), null, true);
+    wp_enqueue_script('script', get_template_directory_uri() . '/js/script.js', array( 'jquery' ), null, true);
+    wp_enqueue_script('comment', get_template_directory_uri() . '/js/comment.js', array( 'jquery' ), null, true);
+    wp_enqueue_script('comment-reply', get_template_directory_uri() . '/js/comment-reply.js', array( 'jquery' ), null, true);
+    wp_enqueue_script('content', get_template_directory_uri() . '/js/content.js', array( 'jquery' ), null, true);
+    wp_enqueue_script('toggle-menu', get_template_directory_uri() . '/js/toggle-menu.js', array( 'jquery' ), null, true);
 
-    wp_enqueue_script( 'jquery' );
-    wp_enqueue_script('html5lightbox', get_template_directory_uri() . '/html5lightbox/html5lightbox.js');
+    wp_enqueue_script('html5lightbox', get_template_directory_uri() . '/html5lightbox/html5lightbox.js', array( 'jquery' ), null, true);
+    wp_enqueue_script('alslider', get_template_directory_uri() . '/alslider/jquery.alslider.js', array( 'jquery' ), null, true);
 }
 
 add_action('wp_enqueue_scripts', 'ispynyc_scripts');
+
+/*
+===================================================================
+          Removing WordPress Version from pages, RSS, scripts and styles
+===================================================================
+*/
+add_filter('the_generator', '__return_empty_string');
+function rem_wp_ver_css_js( $src ) {
+    if ( strpos( $src, 'ver=' ) )
+        $src = remove_query_arg( 'ver', $src );
+    return $src;
+}
+add_filter( 'style_loader_src', 'rem_wp_ver_css_js', 9999 );
+add_filter( 'script_loader_src', 'rem_wp_ver_css_js', 9999 );
 
 /*
 ===================================================================
