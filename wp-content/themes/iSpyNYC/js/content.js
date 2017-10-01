@@ -4,87 +4,33 @@
         options = $.extend({
 
             wrapper: '.paragraph-wrap',
-            readMore: '.read-more'
-
+            readMore: '.read-more',
+            paragHeight: 42,
+            toggleSpeed: 500
         }, options);
         return this.each(function () {
             // variables
             var parag = $(this);
-            var paragWrap = $(options.wrapper);
-            var readMore = $(options.readMore);
+            var paragWrap = parag.find(options.wrapper);
+            var readMore = parag.siblings(options.readMore);
 
             if (readMore.length > 0) {
-                if (paragWrap.height() > 42) {
+                if ( paragWrap.height() > options.paragHeight ) {
                     readMore.show();
                 }
             }
 
-            // var content = document.getElementById("content");
-            // var selectedMore;
-            //
-            // function showContent(node) {
-            //     selectedMore = node;
-            //     if (selectedMore.previousElementSibling.style.maxHeight == "42px") {
-            //         selectedMore.previousElementSibling.style.maxHeight = "";
-            //         selectedMore.innerHTML = "read less";
-            //     } else {
-            //         selectedMore.previousElementSibling.style.maxHeight = "42px";
-            //         selectedMore.innerHTML = "read more";
-            //     }
-            // }
-            //
-            // content.onclick = function (event) {
-            //     var target = event.target || event.srcElement;
-            //     if (target.className !== 'read-more') {
-            //         return;
-            //     }
-            //     showContent(target);
-            // };
-
+            readMore.click(function(e) {
+                e.preventDefault();
+                if ( parag.height() === options.paragHeight ) {
+                    parag.stop().animate({maxHeight: paragWrap.height()}, options.toggleSpeed);
+                } else {
+                    parag.stop().animate({maxHeight: options.paragHeight}, options.toggleSpeed);
+                }
+            });
         });
     };
 })(jQuery);
-
-
-// var parag = document.querySelectorAll(".paragraph");
-// var paragWrap = document.querySelectorAll(".paragraph-wrap");
-// var readMore = document.getElementsByClassName("read-more");
-// var comStyle = "";
-// var maxHeight = 0;
-// if (readMore.length > 0) {
-//     if (readMore != "") {
-//         for (var i = 0; i < parag.length; i++) {
-//             comStyle = window.getComputedStyle(paragWrap[i]);
-//             maxHeight = parseInt(comStyle.height);
-//
-//             if (maxHeight > 42) {
-//                 readMore[i].style.display = "inline";
-//             }
-//         }
-//     }
-// }
-//
-// var content = document.getElementById("content");
-// var selectedMore;
-//
-// function showContent(node) {
-//     selectedMore = node;
-//     if (selectedMore.previousElementSibling.style.maxHeight == "42px") {
-//         selectedMore.previousElementSibling.style.maxHeight = "";
-//         selectedMore.innerHTML = "read less";
-//     } else {
-//         selectedMore.previousElementSibling.style.maxHeight = "42px";
-//         selectedMore.innerHTML = "read more";
-//     }
-// }
-//
-// content.onclick = function (event) {
-//     var target = event.target || event.srcElement;
-//     if (target.className !== 'read-more') {
-//         return;
-//     }
-//     showContent(target);
-// };
 
 $(document).ready(function (){
 
