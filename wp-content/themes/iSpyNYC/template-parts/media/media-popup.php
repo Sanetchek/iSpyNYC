@@ -67,8 +67,8 @@ if( $audio ) {
         </div>
     <?php endif; ?>
 
-    <div class="prev-slide"><</div>
-    <div class="next-slide">></div>
+    <div class="prev-slide"><span class="fa fa-angle-left"></span></div>
+    <div class="next-slide"><span class="fa fa-angle-right"></span></div>
 
     <script type="text/javascript">
         jQuery(function ($) {

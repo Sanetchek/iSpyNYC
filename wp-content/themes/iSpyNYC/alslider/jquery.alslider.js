@@ -60,52 +60,51 @@ function loadAlSlider(jsFolder) {
 
                 var currentSlide = slide[slideIndex];
                 currentSlide.classList.add('active');
-                console.log(slideIndex);
-                console.log(currentSlide);
+
+                if( countSlides > 1 ) {
+                    prevNextSlide();
+                } else {
+                    prevSlideBtn.hide();
+                    nextSlideBtn.hide();
+                }
 
 
-                prevSlideBtn.on('click', function () {
-                    console.log('start - ' + slideIndex);
+                function prevNextSlide() {
+                    prevSlideBtn.on('click', function () {
+                        currentSlide.classList.remove('active');
 
-                    currentSlide.classList.remove('active');
+                        switch (slideIndex) {
+                            case 0:
+                                currentSlide = slide[lastSlideIndex];
+                                break;
+                            case lastSlideIndex:
+                                currentSlide = slide[lastSlideIndex - 1];
+                                break;
+                            default:
+                                currentSlide = slide[slideIndex - 1];
+                        }
 
-                    switch (slideIndex) {
-                        case 0:
-                            currentSlide = slide[lastSlideIndex];
-                            break;
-                        case lastSlideIndex:
-                            currentSlide = slide[lastSlideIndex - 1];
-                            break;
-                        default:
-                            currentSlide = slide[slideIndex - 1];
-                    }
+                        currentSlide.classList.add('active');
+                        slideIndex = slider.find('.active').index();
+                    });
 
-                    currentSlide.classList.add('active');
-                    slideIndex = slider.find('.active').index();
+                    nextSlideBtn.on('click', function () {
+                        currentSlide.classList.remove('active');
+                        switch (slideIndex) {
+                            case 0:
+                                currentSlide = slide[slideIndex + 1];
+                                break;
+                            case lastSlideIndex:
+                                currentSlide = slide[0];
+                                break;
+                            default:
+                                currentSlide = slide[slideIndex + 1];
+                        }
 
-                    console.log('finish - ' + slideIndex);
-                });
-
-                nextSlideBtn.on('click', function () {
-                    console.log('start - ' + slideIndex);
-
-                    currentSlide.classList.remove('active');
-                    switch (slideIndex) {
-                        case 0:
-                            currentSlide = slide[slideIndex + 1];
-                            break;
-                        case lastSlideIndex:
-                            currentSlide = slide[0];
-                            break;
-                        default:
-                            currentSlide = slide[slideIndex + 1];
-                    }
-
-                    currentSlide.classList.add('active');
-                    slideIndex = slider.find('.active').index();
-
-                    console.log('finish - ' + slideIndex);
-                });
+                        currentSlide.classList.add('active');
+                        slideIndex = slider.find('.active').index();
+                    });
+                }
             });
         };
     })(jQuery);

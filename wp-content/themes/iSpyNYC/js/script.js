@@ -14,9 +14,3 @@ jQuery(function ($) {
     $(".mylightbox").html5lightbox();
     $('.paragraph').showParagraph();
 });
-
-
-
-(function($){
-
-})(jQuery);

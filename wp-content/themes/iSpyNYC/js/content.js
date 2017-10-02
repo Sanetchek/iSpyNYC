@@ -39,11 +39,14 @@ $(document).ready(function (){
      Ajax Popup
      =====================================================
      */
-    $(document).on('click', '.ispy-popup', function(){  // click on button with class = ispy-popup
+    $(document).on('click', '.preloader', function(){  // click on button with class = ispy-popup
 
         var page = $(this).data('page'); // take from .ispy-popup, data-page = value
         var ajaxurl = $(this).data('url'); // take from .ispy-popup, data-url = value
+        var showPreload = $(this).find('.content-preload');
 
+        showPreload.show();
+        
         $.ajax({
             url : ajaxurl, // var ajaxurl
             type : 'post', // method = get/post
@@ -55,6 +58,9 @@ $(document).ready(function (){
                 console.log( response ); // if error consol.log error
             },
             success : function( response ){
+
+                showPreload.delay(5000).hide();
+                
                 $( '#post-' + page ).append( response ); // if success append everything what contain ajax.php to post-ID
 
                 var ispyModal = document.getElementById('ispy-modal');
@@ -69,6 +75,5 @@ $(document).ready(function (){
                 });
             }
         });
-
     });
 });
