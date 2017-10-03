@@ -60,6 +60,7 @@ if( $audio ) {
 
     <?php if( $audio ): ?>
         <div class="slide">
+            <i class="fa fa-music fa-4x slide-audio" aria-hidden="true"></i>
             <audio controls>
                 <source src="<?php echo $audio['url']; ?>" >
                 <p>Your browser does not support the audio tag.</p>

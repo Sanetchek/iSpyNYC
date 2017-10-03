@@ -69,6 +69,7 @@ if( $audio ) {
     <?php if( $audio ): ?>
         <div class="media">
             <a class="mylightbox audio-light" href="<?php echo $audio['url']; ?>" data-group="gallery-<?php the_ID(); ?>">
+                <i class="fa fa-music fa-4x slide-audio" aria-hidden="true"></i>
                 <img class="iframeplay2" src="<?php bloginfo('template_url') ?>/images/play.png" alt="play">
             </a>
         </div>
@@ -132,6 +133,7 @@ if( $audio ) {
     <?php if( $audio ): ?>
         <div class="media">
             <a class="mylightbox audio-light" href="<?php echo $audio['url']; ?>" data-group="gallery-<?php the_ID(); ?>">
+                <i class="fa fa-music fa-4x slide-audio" aria-hidden="true"></i>
                 <img class="iframeplay2" src="<?php bloginfo('template_url') ?>/images/play.png" alt="play">
             </a>
         </div>
@@ -178,6 +180,7 @@ if( $audio ) {
         <?php if( $audio ): ?>
             <div class="media">
                 <a class="mylightbox audio-light-full" href="<?php echo $audio['url']; ?>" >
+                    <i class="fa fa-music fa-4x slide-audio" aria-hidden="true"></i>
                     <img class="iframeplay1" src="<?php bloginfo('template_url') ?>/images/play.png" alt="play">
                 </a>
             </div>

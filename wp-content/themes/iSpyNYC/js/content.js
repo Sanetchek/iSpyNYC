@@ -24,8 +24,10 @@
                 e.preventDefault();
                 if ( parag.height() === options.paragHeight ) {
                     parag.stop().animate({maxHeight: paragWrap.height()}, options.toggleSpeed);
+                    readMore.text('read less');
                 } else {
                     parag.stop().animate({maxHeight: options.paragHeight}, options.toggleSpeed);
+                    readMore.text('read more');
                 }
             });
         });

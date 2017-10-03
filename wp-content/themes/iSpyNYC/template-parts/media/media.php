@@ -60,7 +60,8 @@ if( $audio ) {
     <?php endif; ?>
 
     <?php if( $audio ): ?>
-        <div class="media">
+        <div class="media audio-light">
+            <i class="fa fa-music fa-4x slide-audio" aria-hidden="true"></i>
             <img class="iframeplay2" src="<?php bloginfo('template_url') ?>/images/play.png" alt="play">
         </div>
     <?php endif; ?>
@@ -114,7 +115,8 @@ if( $audio ) {
     <?php endif; ?>
 
     <?php if( $audio ): ?>
-        <div class="media">
+        <div class="media audio-light">
+            <i class="fa fa-music fa-4x slide-audio" aria-hidden="true"></i>
             <img class="iframeplay2" src="<?php bloginfo('template_url') ?>/images/play.png" alt="play">
         </div>
     <?php endif; ?>
@@ -151,7 +153,8 @@ if( $audio ) {
         <?php endif; ?>
 
         <?php if( $audio ): ?>
-            <div class="media">
+            <div class="media audio-light-full">
+                <i class="fa fa-music fa-4x slide-audio" aria-hidden="true"></i>
                 <img class="iframeplay1" src="<?php bloginfo('template_url') ?>/images/play.png" alt="play">
             </div>
         <?php endif; ?>
