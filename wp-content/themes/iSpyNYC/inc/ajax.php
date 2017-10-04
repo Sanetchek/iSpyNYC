@@ -1,6 +1,11 @@
 <?php
 
 /*
+ * Ispy POPUP with Ajax -   ON
+ *
+ **/
+
+/*
  * HINT
 
 add_action('wp_ajax_(action)', 'my_action_callback');

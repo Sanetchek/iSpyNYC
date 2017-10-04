@@ -1,4 +1,11 @@
 <?php
+
+/*
+ * ACF oembed                               -   ON
+ * ACF Plugin New post from frontend        -   ON 
+ *
+ **/
+
 /*
  ===================================================================
              ACF oembed

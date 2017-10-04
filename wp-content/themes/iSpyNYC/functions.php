@@ -6,83 +6,87 @@
 ===================================================================
 */
 
+/*
+ * User profile frontend                                        -   ON
+ *
+**/
 require_once('users/user_admin.php');
-require_once('inc/functions-admin.php');
-require_once('inc/functions-acf.php');
+
+/*
+ * Ispy POPUP with Ajax                                          -   ON
+ *
+ **/
 require_once('inc/ajax.php');
 
 /*
-===================================================================
-          Remove link replytocom
-===================================================================
-*/
-
-add_filter('comment_reply_link', 'add_nofollow', 420, 4);
-
-function add_nofollow($link, $args, $comment, $post){
-    return preg_replace( '/href=\'(.*(\?|&)replytocom=(\d+)#respond)/', 'href', $link );
-}
+ * ACF oembed                               -   ON
+ * ACF Plugin New post from frontend        -   ON
+ *
+ **/
+require_once('inc/functions-acf.php');
 
 /*
-===================================================================
-          Remove link replytocom
-===================================================================
-*/
-
-//Добавить комментарий ответ ссылки в nofollow
-function add_nofollow_to_reply_link( $link ) {
-    return str_replace( '")\'>', '")\' rel=\'nofollow\'>', $link );
-}
-add_filter( 'comment_reply_link', 'add_nofollow_to_reply_link' );
-
-///////////////////////////////////////////////////////////////
-add_filter('comment_form_field_url', '__return_false');
-
-add_filter('duplicate_comment_id', '__return_false');
-
-/*
-===================================================================
-          Register Scripts and Css
-===================================================================
-*/
-
-function ispynyc_scripts()
-{
-    // jquery
-    wp_enqueue_script('jquery');
-
-    // style
-    wp_enqueue_style('font-awesome', get_template_directory_uri() . '/font-awesome/css/font-awesome.min.css');
-    wp_enqueue_style('style', get_template_directory_uri() . '/style.css');
-    wp_enqueue_style('alslider-style', get_template_directory_uri() . '/alslider/css/jquery.alslider.css');
-
-    // scripts
-    wp_enqueue_script('bg', get_template_directory_uri() . '/js/bg.js', array( 'jquery' ), null, true);
-    wp_enqueue_script('script', get_template_directory_uri() . '/js/script.js', array( 'jquery' ), null, true);
-    wp_enqueue_script('comment', get_template_directory_uri() . '/js/comment.js', array( 'jquery' ), null, true);
-    wp_enqueue_script('comment-reply', get_template_directory_uri() . '/js/comment-reply.js', array( 'jquery' ), null, true);
-    wp_enqueue_script('content', get_template_directory_uri() . '/js/content.js', array( 'jquery' ), null, true);
-    wp_enqueue_script('toggle-menu', get_template_directory_uri() . '/js/toggle-menu.js', array( 'jquery' ), null, true);
-
-    wp_enqueue_script('html5lightbox', get_template_directory_uri() . '/html5lightbox/html5lightbox.js', array( 'jquery' ), null, true);
-    wp_enqueue_script('alslider', get_template_directory_uri() . '/alslider/jquery.alslider.js', array( 'jquery' ), null, true);
-}
-
-add_action('wp_enqueue_scripts', 'ispynyc_scripts');
+ * Custom login logo                                            -   ON
+ * Change Admin head color                                      -   ON
+ * Remove WordPress widgets                                     -   ON
+ * Remove WordPress Logo from the WordPress Admin Bar           -   ON
+ * Add Icons Instead of Text to the Main Admin Bar              -   ON
+ * Custom menu css                                              -   ON
+ * Change Login Logo                                            -   ON
+ * Remove wpcf7                                                 -   ON
+ * Remove Pages if not Administrator                            -   ON
+ * Remove Post Metaboxes                                        -   ON
+ * Change logotype link to site (not to wordpress.org)          -   ON
+ * Remove title in logotype "сайт работает на wordpress"        -   ON
+ * Remove welcome panel                                         -   ON
+ * Custom WordPress Footer                                      -   ON
+ * Remove WordPress Version From The Admin Footer               -   ON
+ * Hide Help tab                                                -   ON
+ * Disable Updates                                              -   ON
+ * Remove Sub-menu page                                         -   ON
+ * Hide other users' posts in admin panel                       -   ON
+ * Password strength                                            -   ON
+ * Mail                                                         -   ON
+ * Replace welcome admintext                                    -   ON
+ *
+ **/
+require_once('inc/functions-admin.php');
 
 /*
-===================================================================
-          Removing WordPress Version from pages, RSS, scripts and styles
-===================================================================
-*/
-add_filter('the_generator', '__return_empty_string');
-function rem_wp_ver_css_js( $src ) {
-    if ( strpos( $src, 'ver=' ) )
-        $src = remove_query_arg( 'ver', $src );
-    return $src;
-}
-add_filter( 'style_loader_src', 'rem_wp_ver_css_js', 9999 );
-add_filter( 'script_loader_src', 'rem_wp_ver_css_js', 9999 );
+ * Simple ajax comment form mod        -   ON
+ * Disable comment js                  -   ON
+ * Comment form                        -   ON
+ * Reorder comment fields              -   ON
+ *
+ **/
+require_once('inc/functions-comments.php');
+
+/*
+ * Login redirect if not administrator                  -   ON
+ * Users redirect to main page                          -   ON
+ * Limit/Restrict media library for users               -   ON
+ * Delete original size of image                        -   ON
+ * Delete thumbnail image                               -   ON
+ *
+ **/
+require_once('inc/functions-limit.php');
+
+/*
+ * Remove link replytocom                                               -   ON
+ * Remove link replytocom                                               -   ON
+ * Removing WordPress Version from pages, RSS, scripts and styles       -   ON
+ * Remove Admin bar                                                     -   ON
+ * Remove WordPress Meta Generator                                      -   ON
+ * REMOVE WP EMOJI                                                      -   ON
+ *
+ **/
+require_once('inc/functions-remove.php');
+
+/*
+ * Register Scripts and Css        -   ON
+ *
+ **/
+require_once('inc/functions-styles-scripts.php');
 
 /*
 ===================================================================
@@ -147,39 +151,6 @@ register_sidebar(array(
 
 /*
 ===================================================================
-          Remove Admin bar
-===================================================================
-*/
-
-add_filter('show_admin_bar', '__return_false');
-
-/*
-===================================================================
-          Remove WordPress Meta Generator
-===================================================================
-*/
-
-remove_action('wp_head', 'rsd_link');
-remove_action('wp_head', 'wlwmanifest_link');
-remove_action('wp_head', 'wp_shortlink_wp_head', 10, 0);
-remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
-remove_action('wp_head', 'wp_generator');
-remove_action('wp_head', 'feed_links_extra', 3);
-
-/*
-===================================================================
-          REMOVE WP EMOJI
-===================================================================
-*/
-
-remove_action('wp_head', 'print_emoji_detection_script', 7);
-remove_action('wp_print_styles', 'print_emoji_styles');
-
-remove_action('admin_print_scripts', 'print_emoji_detection_script');
-remove_action('admin_print_styles', 'print_emoji_styles');
-
-/*
-===================================================================
            Pagination
 ===================================================================
 */
@@ -204,428 +175,5 @@ function wp_corenavi() {
     echo $pages . paginate_links($a);
     if ($max > 1) echo '</div>';
 }
-
-////////////////////////////////////////////    Custom Admin     /////////////////////////////////////////////
-
-/*
-===================================================================
-           Change Admin head color
-===================================================================
-*/
-
-add_action('admin_head', 'custom_colors');
-function custom_colors() {
-    echo '<style type="text/css">
-	#wpadminbar{background:#141f89}
-	li#wp-admin-bar-comments {
-    display: none;}
-	</style>';
-}
-
-/*
-===================================================================
-           Remove WordPress widgets
-===================================================================
-*/
-
-function clear_dash(){
-    $side = &$GLOBALS['wp_meta_boxes']['dashboard']['side']['core'];
-    $normal = &$GLOBALS['wp_meta_boxes']['dashboard']['normal']['core'];
-
-    unset($side['dashboard_quick_press']); //Быстрая публикация
-    unset($side['dashboard_primary']); //Блог WordPress
-    unset($side['dashboard_secondary']); //Другие Новости WordPress
-    unset($normal['dashboard_incoming_links']); //Входящие ссылки
-    unset($normal['dashboard_plugins']); //Последние Плагины
-}
-add_action('wp_dashboard_setup', 'clear_dash' );
-
-/*
-===================================================================
-           Remove WordPress Logo from the WordPress Admin Bar
-===================================================================
-*/
-
-function remove_wp_logo() {
-    global $wp_admin_bar;
-    $wp_admin_bar->remove_menu('wp-logo');
-}
-add_action( 'wp_before_admin_bar_render', 'remove_wp_logo' );
-
-/*
-===================================================================
-           Add Icons Instead of Text to the Main Admin Bar
-===================================================================
-*/
-
-function custom_adminbar_menu( $meta = TRUE ) {
-    global $wp_admin_bar;
-    if ( !is_user_logged_in() ) { return; }
-    if ( !is_super_admin() || !is_admin_bar_showing() ) { return; }
-    $wp_admin_bar->add_menu( array(
-            'id' => 'custom_menu',
-            'title' => __( '<img src="'. get_bloginfo('template_directory') .'/images/iSpy.svg" style="height: 30px;" />' ),
-            'href' => get_home_url() )
-    );
-}
-add_action( 'admin_bar_menu', 'custom_adminbar_menu', 15 );
-
-/*
-===================================================================
-           Custom menu css
-===================================================================
-*/
-
-function custom_menu_css() {
-    $custom_menu_css = '<style type="text/css">  
-        #wp-admin-bar-custom_menu img { display: block; margin: 0 auto; } /** moves icon over */  
-        #wp-admin-bar-custom_menu { width:50px; } /** sets width of custom menu */ 
-         
-        #dashboard_right_now .main p {
-            display: none !important;
-        }      
-        #screen-options-link-wrap {
-            display: none !important;
-        }
-    </style>';
-    echo $custom_menu_css;
-}
-add_action( 'admin_head', 'custom_menu_css' );
-
-/*
-===================================================================
-           Change Login Logo
-===================================================================
-*/
-
-function my_login(){
-    echo '
-   <style type="text/css">
-        #login h1 a { background: url('. get_bloginfo('template_directory') .'/images/iSpy.svg) no-repeat 0 0 !important;
-   			background-size: contain !important;
-   			width: 150px;
-   			height: 150px;
-         }
-        .login #nav {
-            margin: 24px 0 0;
-            color: #fff;
-        }
-        .login #backtoblog a, .login #nav a {
-            text-decoration: none;
-            color: #fff;
-        }
-    </style>';
-}
-add_action('login_head', 'my_login');
-
-/*
-===================================================================
-           Remove Pages if not Administrator
-===================================================================
-*/
-
-if (!(current_user_can('administrator'))) {
-    function remove_wpcf7() {
-        remove_menu_page( 'wpcf7' );                      // Contact Form 7
-        remove_menu_page( 'edit-comments.php' );          // Редактор комментариев
-        remove_menu_page( 'index.php' );                  //Консоль
-        remove_menu_page( 'upload.php' );                 //Медиафайлы
-        remove_menu_page( 'edit.php?post_type=page' );    //Страницы
-        remove_menu_page( 'edit-comments.php' );          //Комментарии
-        remove_menu_page( 'themes.php' );                 //Внешний вид
-        remove_menu_page( 'plugins.php' );                //Плагины
-        remove_menu_page( 'tools.php' );                  //Инструменты
-        remove_menu_page( 'options-general.php' );        //Параметры
-    }
-
-    add_action('admin_menu', 'remove_wpcf7');
-}
-
-/*
-===================================================================
-           Change logotype link to site (not to wordpress.org)
-===================================================================
-*/
-
-add_filter( 'login_headerurl', create_function('', 'return get_home_url();') );
-
-/*
-===================================================================
-           Remove title in logotype "сайт работает на wordpress"
-===================================================================
-*/
-
-add_filter( 'login_headertitle', create_function('', 'return false;') );
-
-/*
-===================================================================
-           Remove welcome panel
-===================================================================
-*/
-
-remove_action('welcome_panel', 'wp_welcome_panel');
-
-/*
-===================================================================
-           Custom WordPress Footer
-===================================================================
-*/
-
-function remove_footer_admin () {
-    echo '&copy; 2016 - iSpy NYC';
-}
-add_filter('admin_footer_text', 'remove_footer_admin');
-
-/*
-===================================================================
-           Remove WordPress Version From The Admin Footer
-===================================================================
-*/
-
-function remove_wordpress_version() {
-    remove_filter( 'update_footer', 'core_update_footer' );
-}
-add_action( 'admin_menu', 'remove_wordpress_version' );
-
-/*
-===================================================================
-           Hide Help tab
-===================================================================
-*/
-
-function hide_help() {
-    echo '<style type="text/css">
-            #contextual-help-link-wrap { display: none !important; }
-    </style>';
-}
-add_action('admin_head', 'hide_help');
-
-/*
-===================================================================
-            Disable Updates
-===================================================================
-*/
-
-add_filter('pre_site_transient_update_core',create_function('$a', "return null;"));
-wp_clear_scheduled_hook('wp_version_check');
-
-remove_action('load-update-core.php','wp_update_themes');
-add_filter('pre_site_transient_update_themes',create_function('$a', "return null;"));
-wp_clear_scheduled_hook('wp_update_themes');
-
-remove_action( 'load-update-core.php', 'wp_update_plugins' );
-add_filter( 'pre_site_transient_update_plugins', create_function( '$a', "return null;" ) );
-wp_clear_scheduled_hook( 'wp_update_plugins' );
-
-
-/*
- ===================================================================
-             Remove Sub-menu page
- ===================================================================
-*/
-
-function remove_admin_submenu_items() {
-    remove_submenu_page( 'index.php', 'update-core.php' );
-}
-
-add_action( 'admin_menu', 'remove_admin_submenu_items');
-
-/*
- ===================================================================
-             Hide other users' posts in admin panel
- ===================================================================
-*/
-
-function posts_for_current_author($query) {
-    global $pagenow;
-
-    if( 'edit.php' != $pagenow || !$query->is_admin )
-        return $query;
-
-    if( !current_user_can( 'edit_others_posts' ) ) {
-        global $user_ID;
-        $query->set('author', $user_ID );
-    }
-    return $query;
-}
-add_filter('pre_get_posts', 'posts_for_current_author');
-
-/*
- ===================================================================
-             Login redirect if not administrator
- ===================================================================
-*/
-
-add_filter("login_redirect", "sp_login_redirect", 10, 3);
-
-function sp_login_redirect($redirect_to, $request, $user){
-    if(is_array($user->roles))
-        if(in_array('administrator', $user->roles))
-            return home_url('/wp-admin/');
-    return home_url();
-}
-
-/*
-   ===================================================================
-               Users redirect to main page
-   ===================================================================
-*/
-
-add_action('admin_init','users_redirect');
-
-function users_redirect(){
-    if (!(current_user_can('administrator'))) {
-        wp_redirect(site_url());
-        die();
-    }
-}
-
-/*
-   ===================================================================
-               Limit/Restrict media library for users
-   ===================================================================
-*/
-
-add_action('pre_get_posts','ml_restrict_media_library');
-
-function ml_restrict_media_library( $wp_query_obj ) {
-    global $current_user, $pagenow;
-    if( !is_a( $current_user, 'WP_User') )
-        return;
-    if( 'admin-ajax.php' != $pagenow || $_REQUEST['action'] != 'query-attachments' )
-        return;
-    if( !current_user_can('manage_media_library') )
-        $wp_query_obj->set('author', $current_user->ID );
-    return;
-}
-
-/*
-   ===================================================================
-               Simple ajax comment form mod
-   ===================================================================
-*/
-/**
- * Adding processing message at comment form
- * Use inline style so we don't need to load more file
- */
-function simple_ajax_comment_form_mod( $settings ){
-    printf( '<div class="submitting-comment" style="padding: 15px 20px; text-align: center; display: none;">%s</div>', __( 'Submitting comment...' ) );
-}
-add_action( 'comment_form', 'simple_ajax_comment_form_mod' );
-
-/*
-   ===================================================================
-               Disable comment js
-   ===================================================================
-*/
-
-function disable_comment_js(){
-    wp_deregister_script( 'comment-reply' );
-}
-add_action('init','disable_comment_js');
-
-/*
-   ===================================================================
-               Password strength
-   ===================================================================
-*/
-
-function wc_ninja_remove_password_strength() {
-    if ( wp_script_is( 'wc-password-strength-meter', 'enqueued' ) ) {
-        wp_dequeue_script( 'wc-password-strength-meter' );
-    }
-}
-add_action( 'wp_print_scripts', 'wc_ninja_remove_password_strength', 100 );
-
-/*
-   ===================================================================
-               Comment form
-   ===================================================================
-*/
-
-function ispynyc_comment( $comment, $args, $depth ) {
-    $GLOBALS['comment'] = $comment;
-    switch ( $comment->comment_type ) :
-        case '' :
-            ?>
-            <li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
-            <div id="comment-<?php comment_ID(); ?>">
-                <div class="comment-author vcard">
-                    <?php printf( __( '%s <span class="says">says:</span>', 'ispynyc' ), sprintf( '<cite class="fn">%s</cite>', get_comment_author_link() ) ); ?>
-                </div><!-- .comment-author .vcard -->
-                <?php if ( $comment->comment_approved == '0' ) : ?>
-                    <em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'ispynyc' ); ?></em>
-                    <br />
-                <?php endif; ?>
-
-                <div class="comment-meta commentmetadata"><a>
-                        <?php
-                        /* translators: 1: date, 2: time */
-                        printf( __( '%1$s at %2$s', 'ispynyc' ), get_comment_date(),  get_comment_time() ); ?></a>
-                    <?php edit_comment_link( __( '(Edit)', 'ispynyc' ), ' ' );
-                    ?>
-                </div><!-- .comment-meta .commentmetadata -->
-
-                <div class="comment-body"><?php comment_text(); ?></div>
-
-                <div class="reply">
-                    <?php comment_reply_link( array_merge( $args, array( 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
-                </div><!-- .reply -->
-            </div><!-- #comment-##  -->
-
-            <?php
-            break;
-        case 'pingback'  :
-        case 'trackback' :
-            ?>
-            <li class="post pingback">
-            <p><?php _e( 'Pingback:', 'ispynyc' ); ?> <?php comment_author_link(); ?><?php edit_comment_link( __( '(Edit)', 'ispynyc' ), ' ' ); ?></p>
-            <?php
-            break;
-    endswitch;
-}
-
-/*
-   ===================================================================
-               Reorder comment fields
-   ===================================================================
-*/
-
-add_filter('comment_form_fields', 'kama_reorder_comment_fields' );
-function kama_reorder_comment_fields( $fields ){
-    // die(print_r( $fields )); // посмотрим какие поля есть
-
-    $new_fields = array(); // сюда соберем поля в новом порядке
-
-    $myorder = array('author','email','comment'); // нужный порядок
-
-    foreach( $myorder as $key ){
-        $new_fields[ $key ] = $fields[ $key ];
-        unset( $fields[ $key ] );
-    }
-
-    // если остались еще какие-то поля добавим их в конец
-    if( $fields )
-        foreach( $fields as $key => $val )
-            $new_fields[ $key ] = $val;
-
-    return $new_fields;
-}
-
-/////////////////////////////////////////////////////////////////////////////
-
-function change_name($name) {
-    return 'ispynyc.org';
-}
-
-add_filter('wp_mail_from_name','change_name');
-
-function change_email($email) {
-    return 'admin@ispynyc.org';
-}
-
-add_filter('wp_mail_from','change_email');
-
-
 
 ?>
