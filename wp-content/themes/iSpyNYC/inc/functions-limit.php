@@ -19,7 +19,7 @@ add_filter("login_redirect", "sp_login_redirect", 10, 3);
 
 function sp_login_redirect($redirect_to, $request, $user){
     if(is_array($user->roles))
-        if(in_array('administrator', $user->roles) && in_array('editor', $user->roles))
+        if(in_array('administrator', $user->roles) && in_array('editor', $user->roles) && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) )
             return home_url('/wp-admin/');
     return home_url();
 }
@@ -33,7 +33,7 @@ function sp_login_redirect($redirect_to, $request, $user){
 add_action('admin_init','users_redirect');
 
 function users_redirect(){
-    if (!(current_user_can('administrator')) && !(current_user_can('editor'))) {
+    if (!(current_user_can('administrator')) && !(current_user_can('editor')) && ( ! defined( 'DOING_AJAX' ) || ! DOING_AJAX ) ) {
         wp_redirect(site_url());
         die();
     }

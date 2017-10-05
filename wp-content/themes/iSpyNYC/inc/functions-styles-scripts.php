@@ -28,6 +28,7 @@ function ispynyc_scripts()
     wp_enqueue_script('comment-reply', get_template_directory_uri() . '/js/comment-reply.js', array( 'jquery' ), null, true);
     wp_enqueue_script('content', get_template_directory_uri() . '/js/content.js', array( 'jquery' ), null, true);
     wp_enqueue_script('toggle-menu', get_template_directory_uri() . '/js/toggle-menu.js', array( 'jquery' ), null, true);
+    wp_enqueue_script('date', get_template_directory_uri() . '/js/date.js', array( 'jquery' ), null, true);
 
     wp_enqueue_script('html5lightbox', get_template_directory_uri() . '/html5lightbox/html5lightbox.js', array( 'jquery' ), null, true);
     wp_enqueue_script('alslider', get_template_directory_uri() . '/alslider/jquery.alslider.js', array( 'jquery' ), null, true);

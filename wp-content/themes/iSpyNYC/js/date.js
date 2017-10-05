@@ -1,5 +1,15 @@
-var d = new Date();
+$(document).ready(function (){
+    var d = new Date();
 
-var month=new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "Novembr", "Decembr");
+    var monthArray = new Array("January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "Novembr", "Decembr");
 
-document.write("<div class=\"month\">" + month[d.getMonth()] + "</div><div class=\"day\">" + d.getDate() + "</div>");
+    var month = monthArray[d.getMonth()];
+    var day = d.getDate();
+    var divMonth = $('.month');
+    var divDay = $('.day');
+
+    if( divDay.length > 0 && divMonth.length > 0 ) {
+        divMonth.text(month);
+        divDay.text(day);
+    }
+});

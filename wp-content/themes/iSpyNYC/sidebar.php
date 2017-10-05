@@ -10,7 +10,8 @@
 
         <?php else: ?>    
             <div class="date">
-                <script language="javascript" type="text/javascript" src="<?php bloginfo('template_url') ?>/js/date.js"></script>
+                <div class="month"></div>
+                <div class="day"></div>
             </div>
         <?php endif; ?>
 

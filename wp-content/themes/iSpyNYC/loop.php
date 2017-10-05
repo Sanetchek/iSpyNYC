@@ -9,7 +9,9 @@
     </h4>
 	<div class="images">
         <?php get_template_part( 'template-parts/media/media' ); ?>
-        <div class="preloader" data-page="<?php the_ID(); ?>" data-url="<?php echo admin_url('admin-ajax.php'); ?>">
+        <div class="preloader"
+             data-page="<?php the_ID(); ?>"
+             data-url="<?php echo admin_url('admin-ajax.php'); ?>">
             <div class="content-preload">
                 <span class="fa fa-spinner fa-pulse fa-2x fa-fw"></span>
             </div>

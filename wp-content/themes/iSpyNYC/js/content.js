@@ -34,7 +34,7 @@
     };
 })(jQuery);
 
-$(document).ready(function (){
+jQuery(document).ready(function ($){
 
     /*
      =====================================================
@@ -48,22 +48,22 @@ $(document).ready(function (){
         var showPreload = $(this).find('.content-preload');
 
         showPreload.show();
-        
+
         $.ajax({
             url : ajaxurl, // var ajaxurl
             type : 'post', // method = get/post
             data : {
                 page : page, // var page
-                action : 'ispy-popup' // class .ispy-popup
+                action : 'ispy_popup'
             },
             error : function( response ) {
-                console.log( response ); // if error consol.log error
+                showPreload.delay(5000).hide();
+                console.log( 'error - ' + response ); // if error consol.log error
             },
             success : function( response ){
-
                 showPreload.delay(5000).hide();
-                
-                $( '#post-' + page ).append( response ); // if success append everything what contain ajax.php to post-ID
+
+                $( '#content' ).append( response ); // if success append everything what contain ajax.php to post-ID
 
                 var ispyModal = document.getElementById('ispy-modal');
                 var close = $('.close');
@@ -79,3 +79,4 @@ $(document).ready(function (){
         });
     });
 });
+

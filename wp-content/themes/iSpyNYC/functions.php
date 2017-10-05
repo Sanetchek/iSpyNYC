@@ -9,9 +9,9 @@
 /*
  * User profile frontend                                        -   ON
  *
-**/
-require_once('users/user_admin.php');
 
+require_once('users/user_admin.php');
+**/
 /*
  * Ispy POPUP with Ajax                                          -   ON
  *
