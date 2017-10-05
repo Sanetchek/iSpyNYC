@@ -1,9 +1,5 @@
 <article id="post-<?php the_ID(); ?>" class="article">
 	<h4>
-		<?php
-		$comment = get_the_author_meta('user_email');
-		echo get_avatar( $comment, 30 );
-		?>
         <span><?php the_author(); ?></span>
         <hr>
     </h4>
