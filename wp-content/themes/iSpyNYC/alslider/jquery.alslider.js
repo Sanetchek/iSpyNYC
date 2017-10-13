@@ -66,7 +66,7 @@ function loadAlSlider(jsFolder) {
                 if( countSlides > 1 ) {
                     prevNextSlide();
                 } else {
-                    currentSlideVideo()
+                    currentSlideVideo();
                     prevSlideBtn.hide();
                     nextSlideBtn.hide();
                 }
