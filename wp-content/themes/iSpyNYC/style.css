@@ -215,8 +215,8 @@ section {
 #left-sidebar-btn {
     display: none;
     background: #fff;
-    z-index: 1000;
-    width: 36px;
+    z-index: 11;
+    width: 36px;        
     height: 36px;
     line-height: 36px;
     text-align: center;
@@ -842,8 +842,12 @@ form.comment-form {
 }
 
 p.form-submit {
+    height: 25px;
     position: absolute;
+    left: 2px;
+    right: 16px;
     bottom: 5px;
+    background: #fff;
 }
 
 .comment_form {
@@ -980,10 +984,7 @@ input#author, input#email, input[name="your-name"], input[name="your-email"], in
 }
 
 #comments input[type="submit"] {
-    margin: 15px 0 0;
     width: 100px;
-    height: 26px;
-    margin-top: 14px;
     font-size: 12px;
     border-radius: 5px;
     color: #000;
@@ -1169,7 +1170,7 @@ footer#footer-menu a:hover {
         display: none;
     }
     #content .article {
-        padding: 23px 9px 19px 9px;
+        padding: 23px 6% 19px 6%;
     }
 
     #ispy-modal .al-slider {
@@ -1226,7 +1227,7 @@ div#ispy-modal {
 }
 
 .close {
-    position: fixed;
+    position: absolute;
     top: 0;
     right: 0;
     width: 30px;

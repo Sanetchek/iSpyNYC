@@ -41,7 +41,8 @@ jQuery(document).ready(function ($){
      Ajax Popup
      =====================================================
      */
-    $(document).on('click', '.preloader', function(){  // click on button with class = ispy-popup
+    $(document).on('click', '.preloader', function(e){  // click on button with class = ispy-popup
+        e.preventDefault();
 
         var page = $(this).data('page'); // take from .ispy-popup, data-page = value
         var ajaxurl = $(this).data('url'); // take from .ispy-popup, data-url = value
@@ -65,7 +66,7 @@ jQuery(document).ready(function ($){
 
                 $( '#content' ).append( response ); // if success append everything what contain ajax.php to post-ID
 
-                var ispyModal = document.getElementById('ispy-modal');
+                var ispyModal = $('#ispy-modal');
                 var close = $('.close');
                 close.on('click', function(){
                     ispyModal.remove();
@@ -79,4 +80,3 @@ jQuery(document).ready(function ($){
         });
     });
 });
-

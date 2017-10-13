@@ -50,6 +50,8 @@ function loadAlSlider(jsFolder) {
                 var lastSlideIndex = countSlides - 1;
                 var prevSlideBtn = slider.find(options.prevSlide);
                 var nextSlideBtn = slider.find(options.nextSlide);
+                
+                var video = slide.find('video');
 
                 var slideIndex = slider.find('.active').index();
                 if (slideIndex < 0) {
@@ -64,10 +66,10 @@ function loadAlSlider(jsFolder) {
                 if( countSlides > 1 ) {
                     prevNextSlide();
                 } else {
+                    currentSlideVideo()
                     prevSlideBtn.hide();
                     nextSlideBtn.hide();
                 }
-
 
                 function prevNextSlide() {
                     prevSlideBtn.on('click', function () {
@@ -86,6 +88,8 @@ function loadAlSlider(jsFolder) {
 
                         currentSlide.classList.add('active');
                         slideIndex = slider.find('.active').index();
+
+                        currentSlideVideo();
                     });
 
                     nextSlideBtn.on('click', function () {
@@ -103,7 +107,37 @@ function loadAlSlider(jsFolder) {
 
                         currentSlide.classList.add('active');
                         slideIndex = slider.find('.active').index();
+
+                        currentSlideVideo();
                     });
+                }
+
+                function currentSlideVideo() {
+                    var currentSlideVideo = currentSlide.querySelectorAll('video').length;
+                    if ( currentSlideVideo > 0 ) {
+                        playVideo();
+                        videoPlayPause();
+                    } else {
+                        pauseVideo();
+                    }
+                }
+
+                function videoPlayPause() {
+                    video.on('click', function(){
+                        if(video[0].paused) {
+                            playVideo();
+                        } else {
+                            pauseVideo();
+                        }
+                    });
+                }
+
+                function playVideo() {
+                    video[0].play();
+                }
+
+                function pauseVideo() {
+                    video[0].pause();
                 }
             });
         };

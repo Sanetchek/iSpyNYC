@@ -1,0 +1,29 @@
+<component name="libraryTable">
+  <library name="Generated files" type="javaScript">
+    <properties>
+      <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/js/script.min.js" />
+        <item url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/js/toggle-menu.min.js" />
+        <item url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/alslider/jquery.alslider.min.js" />
+        <item url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/js/admin-bg.min.js" />
+        <item url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/js/bg.min.js" />
+        <item url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/js/comment.min.js" />
+        <item url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/js/comment-reply.min.js" />
+        <item url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/js/content.min.js" />
+        <item url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/js/date.min.js" />
+      </sourceFilesUrls>
+    </properties>
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/js/script.min.js" />
+      <root url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/js/toggle-menu.min.js" />
+      <root url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/alslider/jquery.alslider.min.js" />
+      <root url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/js/admin-bg.min.js" />
+      <root url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/js/bg.min.js" />
+      <root url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/js/comment.min.js" />
+      <root url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/js/comment-reply.min.js" />
+      <root url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/js/content.min.js" />
+      <root url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/js/date.min.js" />
+    </CLASSES>
+    <SOURCES />
+  </library>
+</component>
