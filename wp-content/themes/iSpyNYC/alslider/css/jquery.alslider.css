@@ -31,9 +31,11 @@
 
 .al-slider video {
     width: 98%;
-    min-height: 98%;
+    min-height: 70%;
     padding: 1%;
     background: #000;
+    margin-top: 6vh;
+    
 }
 
 audio {
@@ -82,4 +84,34 @@ audio {
     -ms-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
     transform: translateY(-50%);
+}
+
+@media all and (max-width: 1020px) {
+    .al-slider {
+        max-height: 500px;
+    }
+
+    .al-slider .slide {
+        background: #000;
+    }
+
+    .al-slider .slide img {
+        max-width: 100%;
+        max-height: 100%;
+        background: none;
+        padding: 0;
+    }
+
+    .al-slider .slide video {
+        max-height: 98%;
+        padding: 0 1%;
+        margin-top: 0;
+    }
+}
+
+@media all and (max-width: 480px) {
+    .al-slider {
+        height: 50vh;
+        max-height: 500px;
+    }
 }
