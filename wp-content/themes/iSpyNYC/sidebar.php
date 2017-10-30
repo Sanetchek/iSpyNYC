@@ -16,5 +16,4 @@
         <?php endif; ?>
 
         <?php get_template_part( 'downapp' ); ?>
-    </>
 </aside>
