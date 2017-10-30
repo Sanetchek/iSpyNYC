@@ -64,17 +64,20 @@ jQuery(document).ready(function ($){
             success : function( response ){
                 showPreload.delay(5000).hide();
 
+                $( 'body' ).addClass( 'no-scroll' );
                 $( '#content' ).append( response ); // if success append everything what contain ajax.php to post-ID
 
                 var ispyModal = $('#ispy-modal');
                 var close = $('.close');
                 close.on('click', function(){
                     ispyModal.remove();
+                    $( 'body' ).removeClass( 'no-scroll' );
                 });
 
                 var modal = $('.modal');
                 modal.on('click', function(){
                     ispyModal.remove();
+                    $( 'body' ).removeClass( 'no-scroll' );
                 });
             }
         });

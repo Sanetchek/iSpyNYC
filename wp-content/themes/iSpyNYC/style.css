@@ -21,6 +21,10 @@ body {
     height: 100%;
 }
 
+.no-scroll {
+    overflow-y: hidden;
+}
+
 a img {
     border: none;
 }
