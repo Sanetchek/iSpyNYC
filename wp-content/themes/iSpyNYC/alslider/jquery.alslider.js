@@ -38,7 +38,8 @@ function loadAlSlider(jsFolder) {
 
                 slideClass: '.slide',
                 prevSlide: '.prev-slide',
-                nextSlide: '.next-slide'
+                nextSlide: '.next-slide',
+                animation: 'slide-in' //slide-in, fade-in
 
             }, options);
             return this.each(function () {
@@ -61,7 +62,7 @@ function loadAlSlider(jsFolder) {
                 }
 
                 var currentSlide = slide[slideIndex];
-                currentSlide.classList.add('active');
+                currentSlide.classList.add('active', options.animation);
 
                 if( countSlides > 1 ) {
                     prevNextSlide();
@@ -72,44 +73,34 @@ function loadAlSlider(jsFolder) {
                 }
 
                 function prevNextSlide() {
+                   var firstSlide, lastSlide, defaultSlide;
+                    
+                    
                     prevSlideBtn.on('click', function () {
-                        currentSlide.classList.remove('active');
-
-                        switch (slideIndex) {
-                            case 0:
-                                currentSlide = slide[lastSlideIndex];
-                                break;
-                            case lastSlideIndex:
-                                currentSlide = slide[lastSlideIndex - 1];
-                                break;
-                            default:
-                                currentSlide = slide[slideIndex - 1];
-                        }
-
-                        currentSlide.classList.add('active');
-                        slideIndex = slider.find('.active').index();
-
+                        slideTo ( firstSlide = lastSlideIndex, lastSlide = lastSlideIndex - 1, defaultSlide = slideIndex - 1 );                             
                         currentSlideVideo();
                     });
 
                     nextSlideBtn.on('click', function () {
-                        currentSlide.classList.remove('active');
-                        switch (slideIndex) {
-                            case 0:
-                                currentSlide = slide[slideIndex + 1];
-                                break;
-                            case lastSlideIndex:
-                                currentSlide = slide[0];
-                                break;
-                            default:
-                                currentSlide = slide[slideIndex + 1];
-                        }
-
-                        currentSlide.classList.add('active');
-                        slideIndex = slider.find('.active').index();
-
+                        slideTo ( firstSlide = slideIndex + 1, lastSlide = 0, defaultSlide = slideIndex + 1 );
                         currentSlideVideo();
                     });
+                }
+
+                function slideTo ( firstSlide, lastSlide, defaultSlide ){
+                    currentSlide.classList.remove('active', options.animation);
+                    switch (slideIndex) {
+                        case 0:
+                            currentSlide = slide[firstSlide];
+                            break;
+                        case lastSlideIndex:
+                            currentSlide = slide[lastSlide];
+                            break;
+                        default:
+                            currentSlide = slide[defaultSlide];
+                    }
+                    currentSlide.classList.add('active', options.animation);
+                    slideIndex = slider.find('.active').index();
                 }
 
                 function currentSlideVideo() {
