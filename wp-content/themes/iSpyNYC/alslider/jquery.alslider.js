@@ -160,7 +160,6 @@ function loadAlSlider(jsFolder) {
 
                 function sliderHeight() {
                     $(window).resize( function(){
-                        console.log(windowWidth());
                         if( windowWidth() >= 1021 ) {
                             slider.css( 'height', (windowHeight() * 0.9) + 'px' );
                         } else if( windowWidth() >= 480 ) {
@@ -174,7 +173,6 @@ function loadAlSlider(jsFolder) {
                         slider.css( 'height', (windowHeight() * 0.9) + 'px' );
                     }
                 }
-
 
                 function windowWidth() { return $(window).width() }
                 function windowHeight() { return $(window).height() }

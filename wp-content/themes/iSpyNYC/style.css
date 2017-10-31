@@ -1110,13 +1110,13 @@ footer#footer-menu a:hover {
     }
 
     #content #ispy-modal .modal-content .post-content {
-        position: unset;
+        position: relative;
         width: 90%;
         float: none;
         margin: 0 auto;
         padding: 5%;
         height: auto;
-        border-radius: unset;
+        border-radius: initial;
     }
 
     #content #ispy-modal .meta {
