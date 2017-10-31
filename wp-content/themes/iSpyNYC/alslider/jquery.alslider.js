@@ -160,6 +160,11 @@ function loadAlSlider(jsFolder) {
 
                 function sliderHeight() {
                     $(window).resize( function(){
+                        resizeSliderHeghtStyles();
+                    });
+                    resizeSliderHeghtStyles();
+                    
+                    function resizeSliderHeghtStyles() {
                         if( windowWidth() >= 1021 ) {
                             slider.css( 'height', (windowHeight() * 0.9) + 'px' );
                         } else if( windowWidth() >= 480 ) {
@@ -167,10 +172,6 @@ function loadAlSlider(jsFolder) {
                         } else {
                             slider.css( 'height', (windowHeight() * 0.35) + 'px' );
                         }
-                    });
-
-                    if( windowWidth() >= 1021 ) {
-                        slider.css( 'height', (windowHeight() * 0.9) + 'px' );
                     }
                 }
 
