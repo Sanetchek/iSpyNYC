@@ -44,7 +44,10 @@ function loadAlSlider(jsFolder) {
             }, options);
             return this.each(function () {
                 // variables
+                var windowHeight = $( window ).height();
                 var slider = $(this);
+                slider.css( 'height', (windowHeight * 0.9) + 'px' );
+
                 var slide = slider.find(options.slideClass);
                 var countSlides = slide.length;
 
@@ -53,6 +56,11 @@ function loadAlSlider(jsFolder) {
                 var nextSlideBtn = slider.find(options.nextSlide);
                 
                 var video = slide.find('video');
+                var videoHeight = video.height();
+                
+                
+                function videoVerticalAlign() {
+                }
 
                 var slideIndex = slider.find('.active').index();
                 if (slideIndex < 0) {
@@ -105,9 +113,11 @@ function loadAlSlider(jsFolder) {
 
                 function currentSlideVideo() {
                     var currentSlideVideo = currentSlide.querySelectorAll('video').length;
+                    
                     if ( currentSlideVideo > 0 ) {
                         playVideo();
                         videoPlayPause();
+                        centerContent( video, slider );
                     } else {
                         pauseVideo();
                     }
@@ -129,6 +139,14 @@ function loadAlSlider(jsFolder) {
 
                 function pauseVideo() {
                     video[0].pause();
+                }
+
+                function centerContent( block, wrapper ) {
+                    block.css({
+                        position: 'absolute',
+                        left: (wrapper.width() - block.outerWidth())/2,
+                        top: (wrapper.height() - block.outerHeight())/2
+                    });
                 }
             });
         };

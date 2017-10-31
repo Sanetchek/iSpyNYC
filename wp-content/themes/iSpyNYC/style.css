@@ -1196,8 +1196,8 @@ div#ispy-modal {
     -ms-transform: translate(-50%, -50%);
     -o-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-    width: 90vw;
-    height: 90vh;
+    width: 90%;
+    height: auto;
     -webkit-animation-name: slideIn;
     animation-name: slideIn;
 }
@@ -1252,15 +1252,16 @@ div#ispy-modal {
 }
 
 #content #ispy-modal .post-content {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
     width: 25%;
-    float: right;
     overflow-y: auto;
     overflow-x: hidden;
     padding: 1%;
-    background: #fff;
+    background: white;
     border-radius: 10px;
-    position: relative;
-    height: 88vh;
 }
 
 /* Login Style
