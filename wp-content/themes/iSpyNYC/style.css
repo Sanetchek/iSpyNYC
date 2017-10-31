@@ -1110,6 +1110,7 @@ footer#footer-menu a:hover {
     }
 
     #content #ispy-modal .modal-content .post-content {
+        position: unset;
         width: 90%;
         float: none;
         margin: 0 auto;

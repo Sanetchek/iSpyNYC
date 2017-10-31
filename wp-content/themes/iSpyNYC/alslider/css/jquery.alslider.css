@@ -81,10 +81,6 @@ audio {
 }
 
 @media all and (max-width: 1020px) {
-    .al-slider {
-        max-height: 500px;
-    }
-
     .al-slider .slide {
         background: #000;
     }
@@ -100,14 +96,6 @@ audio {
         max-height: 98%;
         padding: 0 1%;
         margin-top: 0;
-    }
-}
-
-@media all and (max-width: 480px) {
-    .al-slider {
-        height: 50vh;
-        height: 50%;
-        max-height: 500px;
     }
 }
 

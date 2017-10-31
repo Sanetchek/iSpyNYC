@@ -44,9 +44,8 @@ function loadAlSlider(jsFolder) {
             }, options);
             return this.each(function () {
                 // variables
-                var windowHeight = $( window ).height();
                 var slider = $(this);
-                slider.css( 'height', (windowHeight * 0.9) + 'px' );
+                sliderHeight();
 
                 var slide = slider.find(options.slideClass);
                 var countSlides = slide.length;
@@ -56,12 +55,8 @@ function loadAlSlider(jsFolder) {
                 var nextSlideBtn = slider.find(options.nextSlide);
                 
                 var video = slide.find('video');
-                var videoHeight = video.height();
-                
-                
-                function videoVerticalAlign() {
-                }
 
+                // Check if SlideIndex is undefined
                 var slideIndex = slider.find('.active').index();
                 if (slideIndex < 0) {
                     slideIndex = 0;
@@ -69,13 +64,19 @@ function loadAlSlider(jsFolder) {
                     slideIndex = slider.find('.active').index();
                 }
 
+                // Activate first slide
                 var currentSlide = slide[slideIndex];
                 currentSlide.classList.add('active', options.animation);
 
+                // Check if slides more than 1
                 if( countSlides > 1 ) {
                     prevNextSlide();
                 } else {
                     currentSlideVideo();
+                    hidePrevNextSlideBtn();
+                }
+
+                function hidePrevNextSlideBtn() {
                     prevSlideBtn.hide();
                     nextSlideBtn.hide();
                 }
@@ -117,7 +118,7 @@ function loadAlSlider(jsFolder) {
                     if ( currentSlideVideo > 0 ) {
                         playVideo();
                         videoPlayPause();
-                        centerContent( video, slider );
+                        centeredContent( video, slider );
                     } else {
                         pauseVideo();
                     }
@@ -141,13 +142,42 @@ function loadAlSlider(jsFolder) {
                     video[0].pause();
                 }
 
-                function centerContent( block, wrapper ) {
-                    block.css({
-                        position: 'absolute',
-                        left: (wrapper.width() - block.outerWidth())/2,
-                        top: (wrapper.height() - block.outerHeight())/2
+                function centeredContent( block, wrapper ) {
+                    $(window).resize( function(){
+                        resizeCenterStyle();
                     });
+                    resizeCenterStyle();
+
+                    function resizeCenterStyle() {
+                        block.css({
+                            position: 'absolute',
+                            left: (wrapper.width() - block.outerWidth())/2,
+                            top: (wrapper.height() - block.outerHeight())/2
+                        });
+                    }
+                    
                 }
+
+                function sliderHeight() {
+                    $(window).resize( function(){
+                        console.log(windowWidth());
+                        if( windowWidth() >= 1021 ) {
+                            slider.css( 'height', (windowHeight() * 0.9) + 'px' );
+                        } else if( windowWidth() >= 480 ) {
+                            slider.css( 'height', (windowHeight() * 0.5) + 'px' );
+                        } else {
+                            slider.css( 'height', (windowHeight() * 0.35) + 'px' );
+                        }
+                    });
+
+                    if( windowWidth() >= 1021 ) {
+                        slider.css( 'height', (windowHeight() * 0.9) + 'px' );
+                    }
+                }
+
+
+                function windowWidth() { return $(window).width() }
+                function windowHeight() { return $(window).height() }
             });
         };
     })(jQuery);
