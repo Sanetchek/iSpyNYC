@@ -28,52 +28,54 @@ if( $audio ) {
     $audio = array();
 }
 ?>
+<div class="slider">
+    <div class="al-slider">
+        <?php if( $images ): ?>
+            <?php foreach( $images as $image ): ?>
+                <div class="slide">
+                    <img src="<?php echo $image['sizes']['large']; ?>" alt="<?php echo $image['alt']; ?>" />
+                </div>
+            <?php endforeach; ?>
+        <?php endif; ?>
 
-<div class="al-slider">
-    <?php if( $images ): ?>
-        <?php foreach( $images as $image ): ?>
+        <?php if( $iframe ): ?>
             <div class="slide">
-                <img src="<?php echo $image['sizes']['large']; ?>" alt="<?php echo $image['alt']; ?>" />
+
+                <?php
+                $iframe_url = get_field('oembed', FALSE, FALSE);
+                $video_thumb_url = get_video_thumbnail_uri($iframe_url);
+                ?>
+                    <img class="iframeplay2" src="<?php bloginfo('template_url') ?>/images/play.png" alt="play">
+                    <img src="<?php echo $video_thumb_url; ?>" alt=""  />
             </div>
-        <?php endforeach; ?>
-    <?php endif; ?>
+        <?php endif; ?>
 
-    <?php if( $iframe ): ?>
-        <div class="slide">
+        <?php if( $video ): echo $video['types']; ?>
+            <div class="slide">
+                <video controls>
+                    <source src="<?php echo $video['url']; ?>">
+                    <p>Your browser does not support the video tag.</p>
+                </video>
+            </div>
+        <?php endif; ?>
 
-            <?php
-            $iframe_url = get_field('oembed', FALSE, FALSE);
-            $video_thumb_url = get_video_thumbnail_uri($iframe_url);
-            ?>
-                <img class="iframeplay2" src="<?php bloginfo('template_url') ?>/images/play.png" alt="play">
-                <img src="<?php echo $video_thumb_url; ?>" alt=""  />
-        </div>
-    <?php endif; ?>
+        <?php if( $audio ): ?>
+            <div class="slide">
+                <i class="fa fa-music fa-4x slide-audio" aria-hidden="true"></i>
+                <audio controls>
+                    <source src="<?php echo $audio['url']; ?>" >
+                    <p>Your browser does not support the audio tag.</p>
+                </audio>
+            </div>
+        <?php endif; ?>
 
-    <?php if( $video ): ?>
-        <div class="slide">
-            <video id="my_video" src="<?php echo $video['url']; ?>" controls>
-                <p>Your browser does not support the video tag.</p>
-            </video>
-        </div>
-    <?php endif; ?>
+        <div class="prev-slide"><span class="fa fa-angle-left"></span></div>
+        <div class="next-slide"><span class="fa fa-angle-right"></span></div>
+    </div>
 
-    <?php if( $audio ): ?>
-        <div class="slide">
-            <i class="fa fa-music fa-4x slide-audio" aria-hidden="true"></i>
-            <audio controls>
-                <source src="<?php echo $audio['url']; ?>" >
-                <p>Your browser does not support the audio tag.</p>
-            </audio>
-        </div>
-    <?php endif; ?>
-
-    <div class="prev-slide"><span class="fa fa-angle-left"></span></div>
-    <div class="next-slide"><span class="fa fa-angle-right"></span></div>
-
-    <script type="text/javascript">
-        jQuery(function ($) {
-            $('.al-slider').alSlider();
-        });
-    </script>
 </div>
+<script type="text/javascript">
+    jQuery(function ($) {
+        $('.al-slider').alSlider();
+    });
+</script>

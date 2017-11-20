@@ -32,6 +32,7 @@
 .al-slider video {
     width: 98%;
     min-height: 70%;
+    max-height: 98%;
     padding: 1%;
     background: #000;
     
@@ -132,4 +133,171 @@ audio {
 @keyframes fadeIn {
     from {opacity: 0}
     to {opacity: 1}
+}
+
+/* Video Controls */
+.video-wrapper video:hover + .video-controls, .video-controls:hover {
+    opacity: 1;
+}
+
+.video-controls {
+    position: absolute;
+    left: 0;
+    bottom: 4px;
+    z-index: 20;
+    width: 98%;
+    padding: 8px 1%;
+    background: #000;
+    line-height: 24px;
+    opacity: 1;
+    -webkit-transition: opacity .5s;
+    -moz-transition: opacity .5s;
+    -ms-transition: opacity .5s;
+    -o-transition: opacity .5s;
+    transition: opacity .5s;
+}
+
+.video-controls span {
+    display: inline-block;
+    width: 4%;
+    font-size: 16px;
+    color: #fff;
+    text-align: center;
+}
+
+span.current, span.duration {
+    font-size: 12px;
+    vertical-align: top;
+}
+
+span.seek-container, span.volume-container {
+    top: 5px;
+    height: 24px;
+}
+
+span.seek-container {
+    width: 60%;
+}
+
+span.volume-container {
+    width: 14%;
+}
+
+@media all and (max-width: 640px) {
+    .video-controls span {
+        width: 7%;
+    }
+    span.seek-container {
+        width: 50%;
+    }
+}
+@media all and (max-width: 520px) {
+    .video-controls span {
+        width: 8.6%;
+    }
+    span.seek-container {
+        width: 40%;
+    }
+}
+@media all and (max-width: 400px) {
+    .video-controls span {
+        width: 10%;
+    }
+    span.seek-container {
+        width: 32%;
+    }
+}
+
+/*Input range style*/
+input[type=range] {
+    /*removes default webkit styles*/
+    -webkit-appearance: none;
+    width: 100%;
+    /*fix for FF unable to apply focus style bug */
+    border: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+    height: 10px;
+    background: #ddd;
+    border: none;
+    border-radius: 25px;
+    margin: -5px 0;
+    cursor: pointer;
+    position: relative;
+    top: -6px;
+}
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 10px;
+    width: 14px;
+    border-radius: 3px;
+    background: #416fff;
+    cursor: pointer;
+}
+input[type=range]:focus {
+    outline: none;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #ccc;
+}
+
+input[type=range]::-moz-range-track {
+    height: 10px;
+    background: #ddd;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+}
+input[type=range]::-moz-range-thumb {
+    border: none;
+    height: 10px;
+    width: 14px;
+    border-radius: 3px;
+    background: #416fff;
+    cursor: pointer;
+}
+
+/*hide the outline behind the border*/
+input[type=range]:-moz-focusring{
+    outline: 1px solid white;
+    outline-offset: -1px;
+}
+
+input[type=range]::-ms-track {
+    height: 10px;
+
+    /*remove bg colour from the track, we'll use ms-fill-lower and ms-fill-upper instead */
+    background: transparent;
+
+    /*leave room for the larger thumb to overflow with a transparent border */
+    border-color: transparent;
+    border-width: 6px 0;
+
+    /*remove default tick marks*/
+    color: transparent;
+    margin: -4px 0;
+    cursor: pointer;
+}
+input[type=range]::-ms-fill-lower {
+    background: #777;
+    border-radius: 25px;
+}
+input[type=range]::-ms-fill-upper {
+    background: #ddd;
+    border-radius: 25px;
+}
+input[type=range]::-ms-thumb {
+    border: none;
+    height: 10px;
+    width: 14px;
+    border-radius: 3px;
+    background: #416fff;
+    cursor: pointer;
+}
+input[type=range]:focus::-ms-fill-lower {
+    background: #888;
+}
+input[type=range]:focus::-ms-fill-upper {
+    background: #ccc;
 }

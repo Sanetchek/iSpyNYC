@@ -4,9 +4,18 @@
       <sourceFilesUrls>
         <item url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/js/script.min.js" />
         <item url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/js/toggle-menu.min.js" />
+        <item url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/alslider/jquery.min.js" />
+        <item url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/bxslider-4-4.2.12/Gulpfile.min.js" />
+        <item url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/bxslider-4-4.2.12/docs_src/assets/vendors/jquery.min.min.js" />
+        <item url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/bxslider-4-4.2.12/docs_src/assets/js/app.min.js" />
         <item url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/alslider/jquery.alslider.min.js" />
+        <item url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/bxslider-4-4.2.12/src/vendor/jquery.easing.1.3.min.js" />
+        <item url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/bxslider-4-4.2.12/dist/vendor/jquery.easing.1.3.min.js" />
         <item url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/js/admin-bg.min.js" />
+        <item url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/bxslider-4-4.2.12/src/vendor/jquery.fitvids.min.js" />
+        <item url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/bxslider-4-4.2.12/dist/vendor/jquery.fitvids.min.js" />
         <item url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/js/bg.min.js" />
+        <item url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/bxslider-4-4.2.12/dist/jquery.bxslider.min.js" />
         <item url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/js/comment.min.js" />
         <item url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/js/comment-reply.min.js" />
         <item url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/js/content.min.js" />
@@ -16,9 +25,18 @@
     <CLASSES>
       <root url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/js/script.min.js" />
       <root url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/js/toggle-menu.min.js" />
+      <root url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/alslider/jquery.min.js" />
+      <root url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/bxslider-4-4.2.12/Gulpfile.min.js" />
+      <root url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/bxslider-4-4.2.12/docs_src/assets/vendors/jquery.min.min.js" />
+      <root url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/bxslider-4-4.2.12/docs_src/assets/js/app.min.js" />
       <root url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/alslider/jquery.alslider.min.js" />
+      <root url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/bxslider-4-4.2.12/src/vendor/jquery.easing.1.3.min.js" />
+      <root url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/bxslider-4-4.2.12/dist/vendor/jquery.easing.1.3.min.js" />
       <root url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/js/admin-bg.min.js" />
+      <root url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/bxslider-4-4.2.12/src/vendor/jquery.fitvids.min.js" />
+      <root url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/bxslider-4-4.2.12/dist/vendor/jquery.fitvids.min.js" />
       <root url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/js/bg.min.js" />
+      <root url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/bxslider-4-4.2.12/dist/jquery.bxslider.min.js" />
       <root url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/js/comment.min.js" />
       <root url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/js/comment-reply.min.js" />
       <root url="file://$PROJECT_DIR$/wp-content/themes/iSpyNYC/js/content.min.js" />

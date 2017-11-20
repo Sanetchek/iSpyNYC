@@ -43,11 +43,10 @@ jQuery(document).ready(function ($){
      */
     $(document).on('click', '.preloader', function(e){  // click on button with class = ispy-popup
         e.preventDefault();
-
+        
         var page = $(this).data('page'); // take from .ispy-popup, data-page = value
         var ajaxurl = $(this).data('url'); // take from .ispy-popup, data-url = value
-        var showPreload = $(this).find('.content-preload');
-
+        var showPreload = $(this).siblings('.content-preload');
         showPreload.show();
 
         $.ajax({
@@ -63,6 +62,7 @@ jQuery(document).ready(function ($){
             },
             success : function( response ){
                 showPreload.delay(5000).hide();
+                $( this ).css( 'visibility', 'visible' );
 
                 $( 'body' ).addClass( 'no-scroll' );
                 $( '#content' ).append( response ); // if success append everything what contain ajax.php to post-ID

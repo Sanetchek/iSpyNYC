@@ -39,7 +39,8 @@ function loadAlSlider(jsFolder) {
                 slideClass: '.slide',
                 prevSlide: '.prev-slide',
                 nextSlide: '.next-slide',
-                animation: 'slide-in' //slide-in, fade-in
+                animation: 'slide-in', //slide-in, fade-in
+                videoControls: true
 
             }, options);
             return this.each(function () {
@@ -53,8 +54,15 @@ function loadAlSlider(jsFolder) {
                 var lastSlideIndex = countSlides - 1;
                 var prevSlideBtn = slider.find(options.prevSlide);
                 var nextSlideBtn = slider.find(options.nextSlide);
-                
-                var video = slide.find('video');
+
+                // Video
+                var videoContainer = slide.find('video');
+                videoContainer.wrap('<div class="video-wrapper"></div>');
+                var videoWrap = slide.find( '.video-wrapper' );
+                var firstVideo = videoWrap.find('video').get(0);
+                if (options.videoControls) {
+                   firstVideo.removeAttribute("controls");
+                }
 
                 // Check if SlideIndex is undefined
                 var slideIndex = slider.find('.active').index();
@@ -83,7 +91,6 @@ function loadAlSlider(jsFolder) {
 
                 function prevNextSlide() {
                    var firstSlide, lastSlide, defaultSlide;
-                    
                     
                     prevSlideBtn.on('click', function () {
                         slideTo ( firstSlide = lastSlideIndex, lastSlide = lastSlideIndex - 1, defaultSlide = slideIndex - 1 );                             
@@ -114,19 +121,27 @@ function loadAlSlider(jsFolder) {
 
                 function currentSlideVideo() {
                     var currentSlideVideo = currentSlide.querySelectorAll('video').length;
-                    
-                    if ( currentSlideVideo > 0 ) {
+
+                    if ( currentSlideVideo > 0 ) {                         
+                        $(window).resize( function() {
+                            setTimeout(function () {
+                                centeredContent(videoWrap, slide);
+                            }, 600);
+                        });
+                        setTimeout(function () {
+                            centeredContent(videoWrap, slide);
+                        }, 600);
                         playVideo();
                         videoPlayPause();
-                        centeredContent( video, slider );
                     } else {
                         pauseVideo();
                     }
                 }
 
                 function videoPlayPause() {
-                    video.on('click', function(){
-                        if(video[0].paused) {
+                    videoContainer.on('click', function(){
+                        playPauseClassToggle();
+                        if(firstVideo.paused) {
                             playVideo();
                         } else {
                             pauseVideo();
@@ -135,36 +150,59 @@ function loadAlSlider(jsFolder) {
                 }
 
                 function playVideo() {
-                    video[0].play();
+                    firstVideo.play();
                 }
 
                 function pauseVideo() {
-                    video[0].pause();
+                    firstVideo.pause();
                 }
 
                 function centeredContent( block, wrapper ) {
                     $(window).resize( function(){
-                        resizeCenterStyle();
+                        if( windowWidth() >= 1021 ) {
+                            block.css({
+                                position: 'absolute',
+                                left: (wrapper.width() - block.outerWidth())/2,
+                                top: (wrapper.height() - block.outerHeight())/2,
+                                height: 'auto',
+                                maxHeight: '100%',
+                                width: '100%'
+                            });
+                        }  else {
+                            block.css({
+                                position: 'absolute',
+                                left: (wrapper.width() - block.outerWidth())/2,
+                                top: '0',
+                                height: '100%',
+                                maxHeight: '100%',
+                                width: '100%'
+                            });
+                        }
                     });
-                    resizeCenterStyle();
 
-                    function resizeCenterStyle() {
+                    if( windowWidth() >= 1021 ) {
                         block.css({
                             position: 'absolute',
                             left: (wrapper.width() - block.outerWidth())/2,
-                            top: (wrapper.height() - block.outerHeight())/2
+                            top: (wrapper.height() - block.outerHeight())/2,
+                            height: 'auto',
+                            maxHeight: '100%',
+                            width: '100%'
+                        });
+                    }  else {
+                        block.css({
+                            position: 'absolute',
+                            left: (wrapper.width() - block.outerWidth())/2,
+                            top: '0',
+                            height: '100%',
+                            maxHeight: '100%',
+                            width: '100%'
                         });
                     }
-                    
                 }
 
                 function sliderHeight() {
                     $(window).resize( function(){
-                        resizeSliderHeghtStyles();
-                    });
-                    resizeSliderHeghtStyles();
-                    
-                    function resizeSliderHeghtStyles() {
                         if( windowWidth() >= 1021 ) {
                             slider.css( 'height', (windowHeight() * 0.9) + 'px' );
                         } else if( windowWidth() >= 480 ) {
@@ -172,11 +210,141 @@ function loadAlSlider(jsFolder) {
                         } else {
                             slider.css( 'height', (windowHeight() * 0.35) + 'px' );
                         }
+                    });
+                    
+                    if( windowWidth() >= 1021 ) {
+                        slider.css( 'height', (windowHeight() * 0.9) + 'px' );
+                    } else if( windowWidth() >= 480 ) {
+                        slider.css( 'height', (windowHeight() * 0.5) + 'px' );
+                    } else {
+                        slider.css( 'height', (windowHeight() * 0.35) + 'px' );
                     }
                 }
 
                 function windowWidth() { return $(window).width() }
                 function windowHeight() { return $(window).height() }
+
+                /* Video Controls */
+                videoContainer.after(
+                    '<div class="video-controls">\n' +
+                    '    <span class="play-pause"><span class="fa fa-pause"></span></span>\n' +
+                    '    <span class="current">00:00</span>\n' +
+                    '    <span class="seek-container"><input type="range" class="seek-bar" value="0"></span>\n' +
+                    '    <span class="duration">00:00</span>\n' +
+                    '    <span class="mute"><span class="fa fa-volume-up"></span></span>\n' +
+                    '    <span class="volume-container"><input type="range" class="volume-bar" min="0" max="100" step="1" value="100"></span>\n' +
+                    '    <span class="full-screen"><span class="fa fa-expand"></span></span>\n' +
+                    '</div>'
+                );
+                
+                var playPauseBtn = videoWrap.find('.play-pause > span');
+                var muteBtn = videoWrap.find('.mute > span');
+                var fullScreen = videoWrap.find( '.full-screen > span' );
+                var currentTime = videoWrap.find('.current');
+
+                var seekBar = videoWrap.find( '.seek-bar' );
+                var volumeBar = videoWrap.find( '.volume-bar' );
+
+                playPauseBtn.on('click', function() {
+                    playPauseClassToggle();
+                    if(firstVideo.paused) {
+                        playVideo();
+                    } else {
+                        pauseVideo();
+                    }
+                });
+
+                muteBtn.on('click', function() {
+                    muteClassToggle();
+                    if(firstVideo.muted) {
+                        firstVideo.muted = false;
+                    } else {
+                        firstVideo.muted = true;
+                    }
+                });
+
+                fullScreen.on('click', function() {
+                    if (!document.fullscreenElement &&    // alternative standard method
+                        !document.mozFullScreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement ) {  // current working methods
+
+                        if (firstVideo.msRequestFullscreen) {
+                            console.log(1);
+                            firstVideo.msRequestFullscreen();
+                        } else if (firstVideo.mozRequestFullScreen) {
+                            console.log(2);
+                            firstVideo.mozRequestFullScreen();
+                        } else if (firstVideo.webkitRequestFullscreen) {
+                            console.log(3);
+                            firstVideo.webkitRequestFullscreen();
+                        } else {
+                            console.log(4);
+                            firstVideo.requestFullscreen();
+                        }
+                    } else {
+                        if (document.exitFullscreen) {
+                            document.exitFullscreen();
+                        } else if (document.msExitFullscreen) {
+                            document.msExitFullscreen();
+                        } else if (document.mozCancelFullScreen) {
+                            document.mozCancelFullScreen();
+                        } else if (document.webkitExitFullscreen) {
+                            document.webkitExitFullscreen();
+                        }
+                    }
+
+                    fullScreenClassToggle();
+                });
+
+                // seek bar options
+                seekBar.on("change", function() {
+                    // Calculate the new time
+                    var videoTime = firstVideo.duration * (seekBar.val() / 100);
+                    
+                    // Update the video time
+                    firstVideo.currentTime = videoTime;
+
+                    seekBar.mousedown(function() {pauseVideo();}).mouseup(function() {playVideo();});
+                });
+                videoContainer.on("timeupdate", function () {
+                    var value = (100 / firstVideo.duration) * firstVideo.currentTime;
+                    seekBar.val(value);
+
+                    currentTime.text(currentVideoTime(firstVideo.currentTime));
+                });
+
+                videoContainer.on('loadedmetadata', function() {
+                    $('.duration').text(currentVideoTime(firstVideo.duration));
+                });
+                
+
+                // Event listener for the volume bar
+                volumeBar.on("change", function() {
+                    firstVideo.volume = volumeBar.val();
+                });
+                
+
+                function playPauseClassToggle() {
+                    playPauseBtn.toggleClass('fa-play');
+                    playPauseBtn.toggleClass('fa-pause');
+                }
+                function muteClassToggle() {
+                    muteBtn.toggleClass('fa-volume-up');
+                    muteBtn.toggleClass('fa-volume-off');
+                }
+
+                function fullScreenClassToggle() {
+                    fullScreen.toggleClass('fa-expand');
+                    fullScreen.toggleClass('fa-compress');
+                }
+
+                function currentVideoTime(whereYouAt) {
+                    var minutes = Math.floor(whereYouAt / 60);
+                    var seconds = Math.floor(whereYouAt - minutes * 60);
+                    var x = minutes < 10 ? "0" + minutes : minutes;
+                    var y = seconds < 10 ? "0" + seconds : seconds;
+
+                    return x + ':' + y;
+                }
             });
         };
     })(jQuery);

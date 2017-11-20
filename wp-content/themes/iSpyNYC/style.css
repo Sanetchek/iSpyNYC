@@ -447,6 +447,7 @@ section {
     bottom: 0;
     left: 0;
     right: 0;
+    z-index: 5;
     background: rgba(0, 0, 0, 0.5);
 }
 
@@ -463,6 +464,11 @@ div#html5lightbox-div {
 
 .media audio {
     margin-top: 117px;
+}
+
+/* Slider style start */
+.slider {
+    position: relative;
 }
 
 i.slide-audio {
