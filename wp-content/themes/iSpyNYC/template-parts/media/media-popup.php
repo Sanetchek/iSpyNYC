@@ -69,8 +69,8 @@ if( $audio ) {
             </div>
         <?php endif; ?>
 
-        <div class="prev-slide"><span class="fa fa-angle-left"></span></div>
-        <div class="next-slide"><span class="fa fa-angle-right"></span></div>
+        <div class="prev-slide"><span class="al al-angle-left"></span></div>
+        <div class="next-slide"><span class="al al-angle-right"></span></div>
     </div>
 
 </div>
