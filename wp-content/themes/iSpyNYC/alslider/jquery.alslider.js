@@ -125,17 +125,17 @@ function loadAlSlider(jsFolder) {
                 }
 
                 function currentSlideVideo() {
-                    var currentSlideVideo = currentSlide.querySelectorAll('video').length;
+                    var currentSlideVideo = currentSlide.querySelectorAll('video');
 
-                    if ( currentSlideVideo > 0 ) {                         
+                    if ( currentSlideVideo.length > 0 ) {
                         $(window).resize( function() {
-                            setTimeout(function () {
-                                centeredContent(videoWrap, slide);
-                            }, 600);
-                        });
-                        setTimeout(function () {
                             centeredContent(videoWrap, slide);
-                        }, 600);
+                        });
+                        videoContainer.resize( function() {
+                            centeredContent(videoWrap, slide);
+                        });
+                        centeredContent(videoWrap, slide);
+                        
                         playVideo();
                         videoPlayPause();
                     } else {
