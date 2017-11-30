@@ -206,7 +206,7 @@ audio {
 
     .al-slider .slide video {
         max-height: 98%;
-        padding: 0 1%;
+        padding: 1%;
         margin-top: 0;
     }
 }

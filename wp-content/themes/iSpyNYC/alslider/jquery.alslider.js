@@ -171,21 +171,17 @@ function loadAlSlider(jsFolder) {
                             block.css({
                                 position: 'absolute',
                                 height: 'fit-content',
-                                width: '100%'
+                                width: '100%',
+                                left: (wrapper.width() - block.outerWidth())/2,
+                                top: (wrapper.height() - block.outerHeight())/2
                             });
-                            setTimeout(function () {
-                                block.css({
-                                    left: (wrapper.width() - block.outerWidth())/2,
-                                    top: (wrapper.height() - block.outerHeight())/2
-                                });
-                            }, 100);
                         }  else {
                             block.css({
                                 position: 'absolute',
+                                height: 'fit-content',
+                                width: '100%',
                                 left: (wrapper.width() - block.outerWidth())/2,
-                                top: '0',
-                                height: '100%',
-                                width: '100%'
+                                top: (wrapper.height() - block.outerHeight())/2
                             });
                         }
                     });
@@ -194,21 +190,17 @@ function loadAlSlider(jsFolder) {
                         block.css({
                             position: 'absolute',
                             height: 'fit-content',
-                            width: '100%'
+                            width: '100%',
+                            left: (wrapper.width() - block.outerWidth())/2,
+                            top: (wrapper.height() - block.outerHeight())/2
                         });
-                        setTimeout(function () {
-                            block.css({
-                                left: (wrapper.width() - block.outerWidth())/2,
-                                top: (wrapper.height() - block.outerHeight())/2
-                            });
-                        }, 100);
                     }  else {
                         block.css({
                             position: 'absolute',
+                            height: 'fit-content',
+                            width: '100%',
                             left: (wrapper.width() - block.outerWidth())/2,
-                            top: '0',
-                            height: '100%',
-                            width: '100%'
+                            top: (wrapper.height() - block.outerHeight())/2
                         });
                     }
                 }
@@ -218,18 +210,18 @@ function loadAlSlider(jsFolder) {
                         if( windowWidth() >= 1021 ) {
                             slider.css( 'height', (windowHeight() * 0.9) + 'px' );
                         } else if( windowWidth() >= 480 ) {
-                            slider.css( 'height', (windowHeight() * 0.5) + 'px' );
+                            slider.css( 'height', (windowHeight() * 0.8) + 'px' );
                         } else {
-                            slider.css( 'height', (windowHeight() * 0.35) + 'px' );
+                            slider.css( 'height', (windowHeight() * 0.4) + 'px' );
                         }
                     });
                     
                     if( windowWidth() >= 1021 ) {
                         slider.css( 'height', (windowHeight() * 0.9) + 'px' );
                     } else if( windowWidth() >= 480 ) {
-                        slider.css( 'height', (windowHeight() * 0.5) + 'px' );
+                        slider.css( 'height', (windowHeight() * 0.8) + 'px' );
                     } else {
-                        slider.css( 'height', (windowHeight() * 0.35) + 'px' );
+                        slider.css( 'height', (windowHeight() * 0.4) + 'px' );
                     }
                 }
 
