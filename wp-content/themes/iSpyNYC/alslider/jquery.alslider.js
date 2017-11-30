@@ -168,40 +168,30 @@ function loadAlSlider(jsFolder) {
                 function centeredContent( block, wrapper ) {
                     $(window).resize( function(){
                         if( windowWidth() >= 1021 ) {
-                            block.css({
-                                position: 'absolute',
-                                height: 'fit-content',
-                                width: '100%',
-                                left: (wrapper.width() - block.outerWidth())/2,
-                                top: (wrapper.height() - block.outerHeight())/2
-                            });
+                            centeredStyles();
                         }  else {
-                            block.css({
-                                position: 'absolute',
-                                height: 'fit-content',
-                                width: '100%',
-                                left: (wrapper.width() - block.outerWidth())/2,
-                                top: (wrapper.height() - block.outerHeight())/2
-                            });
+                            centeredStyles();
                         }
                     });
 
                     if( windowWidth() >= 1021 ) {
-                        block.css({
-                            position: 'absolute',
-                            height: 'fit-content',
-                            width: '100%',
-                            left: (wrapper.width() - block.outerWidth())/2,
-                            top: (wrapper.height() - block.outerHeight())/2
-                        });
+                        centeredStyles();
                     }  else {
+                        centeredStyles();
+                    }
+
+                    function centeredStyles() {
                         block.css({
                             position: 'absolute',
                             height: 'fit-content',
-                            width: '100%',
-                            left: (wrapper.width() - block.outerWidth())/2,
-                            top: (wrapper.height() - block.outerHeight())/2
+                            width: '100%'
                         });
+                        setTimeout(function () {
+                            block.css({
+                                left: (wrapper.width() - block.outerWidth())/2,
+                                top: (wrapper.height() - block.outerHeight())/2
+                            });
+                        }, 50);
                     }
                 }
 
